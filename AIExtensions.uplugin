@@ -1,0 +1,22 @@
+{
+  "FileVersion": 3,
+  "Version": 1.0,
+  "VersionName": "1.0",
+  "EngineVersion": "4.27.0",
+  "FriendlyName": "AI Extensions",
+  "Description": "A collection of classes to extend the existing AI module of the engine",
+  "Category": "AI",
+  "CreatedBy": "Michael Delva",
+  "CreatedByURL": "http://www.emidee.net",
+  "EnabledByDefault": false,
+  "CanContainContent": true,
+
+  "Modules": [
+    {
+      "Name": "AIExtensions",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": []
+}
