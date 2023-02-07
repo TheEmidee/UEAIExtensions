@@ -16,7 +16,8 @@ namespace UnrealBuildTool.Rules
                     "CoreUObject",
                     "Engine",
                     "AIModule",
-                    "GameplayTasks"
+                    "GameplayTasks",
+                    "GameplayAbilities"
                 }
             );
         }
