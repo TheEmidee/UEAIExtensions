@@ -18,9 +18,13 @@
       "LoadingPhase": "Default"
     }
   ],
-    "Plugins": [
+  "Plugins": [
     {
       "Name": "GameplayAbilities",
+      "Enabled": true
+    },
+    {
+      "Name": "GameplayBehaviors",
       "Enabled": true
     }
   ]
