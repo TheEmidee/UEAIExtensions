@@ -3,6 +3,7 @@
 #include "GameplayBehaviors/AIExtGameplayBehaviorDataAsset.h"
 
 #include <AIController.h>
+#include <GameplayBehavior.h>
 #include <GameplayBehaviorConfig.h>
 #include <GameplayBehaviorSubsystem.h>
 
