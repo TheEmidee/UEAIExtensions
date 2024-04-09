@@ -17,7 +17,8 @@ namespace UnrealBuildTool.Rules
                     "AIModule",
                     "GameplayTasks",
                     "GameplayAbilities",
-                    "GameplayBehaviorsModule"
+                    "GameplayBehaviorsModule",
+                    "GameplayTags"
                 }
             );
         }
