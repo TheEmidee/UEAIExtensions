@@ -5,6 +5,8 @@
 
 #include "AIExtAITask_TriggerGameplayBehavior.generated.h"
 
+class UAIExtGameplayBehaviorDataAsset;
+class UGameplayBehaviorConfig;
 class UGameplayBehavior;
 
 UCLASS()
