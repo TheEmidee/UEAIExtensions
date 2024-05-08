@@ -53,7 +53,11 @@ void UAIExtAITask_ActivateAbility::Setup( AAIController & ai_controller, UAbilit
 
 void UAIExtAITask_ActivateAbility::ExternalCancel()
 {
-    ASC->CancelAbilityHandle( AbilitySpecHandle );
+    if ( IsValid( ASC.Get() ) )
+    {
+        ASC->CancelAbilityHandle( AbilitySpecHandle );
+    }
+
     EndTask();
 }
 
