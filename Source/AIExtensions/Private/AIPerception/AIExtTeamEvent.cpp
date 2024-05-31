@@ -1,14 +1,13 @@
 ﻿#include "AIPerception/AIExtTeamEvent.h"
 
-#include "Perception/AIPerceptionSystem.h"
-#include "Perception/AISense_Team.h"
+#include <Perception/AIPerceptionSystem.h>
+#include <Perception/AISense_Team.h>
 
-void UAIExtTeamEvent::ReportTeamEvent( UObject * WorldContextObject, AActor * InBroadcaster, AActor * InEnemy, const FVector & InLastKnowLocation, float EventRange, float PassedInfoAge, float InStrength )
+void UAIExtTeamEvent::ReportTeamEvent( UObject * world_context_object, AActor * in_broadcaster, AActor * in_enemy, const FVector & in_last_know_location, float event_range, float passed_info_age, float in_strength )
 {
-    UAIPerceptionSystem * PerceptionSystem = UAIPerceptionSystem::GetCurrent( WorldContextObject );
-    if ( PerceptionSystem )
+    if ( auto * perception_system = UAIPerceptionSystem::GetCurrent( world_context_object ) )
     {
-        FAITeamStimulusEvent Event( InBroadcaster, InEnemy, InLastKnowLocation, EventRange, PassedInfoAge, InStrength );
-        PerceptionSystem->OnEvent( Event );
+        FAITeamStimulusEvent Event( in_broadcaster, in_enemy, in_last_know_location, event_range, passed_info_age, in_strength );
+        perception_system->OnEvent( Event );
     }
 }
