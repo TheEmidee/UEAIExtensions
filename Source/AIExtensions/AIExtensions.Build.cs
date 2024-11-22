@@ -19,7 +19,8 @@ namespace UnrealBuildTool.Rules
                     "GameplayAbilities",
                     "GameplayBehaviorsModule",
                     "GameplayTags", 
-                    "StateTreeModule"
+                    "StateTreeModule",
+                    "NavigationSystem"
                 }
             );
         }

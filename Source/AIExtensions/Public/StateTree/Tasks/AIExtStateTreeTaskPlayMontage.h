@@ -3,7 +3,7 @@
 #include <Animation/AnimMontage.h>
 #include <StateTreeTaskBase.h>
 
-#include "AIExtStateTreePlayMontageTask.generated.h"
+#include "AIExtStateTreeTaskPlayMontage.generated.h"
 
 class UAnimInstance;
 class UAnimMontage;
@@ -11,12 +11,12 @@ enum class EStateTreeRunStatus : uint8;
 struct FStateTreeTransitionResult;
 
 UCLASS()
-class AIEXTENSIONS_API UAIExtStateTreePlayMontageTaskInstanceData : public UObject
+class AIEXTENSIONS_API UAIExtStateTreeTaskPlayMontageInstanceData : public UObject
 {
     GENERATED_BODY()
 
 public:
-    UAIExtStateTreePlayMontageTaskInstanceData() = default;
+    UAIExtStateTreeTaskPlayMontageInstanceData() = default;
 
     EStateTreeRunStatus OnEnterState( const FStateTreeExecutionContext & context );
     EStateTreeRunStatus OnTick( const FStateTreeExecutionContext & context, float delta_time );
@@ -73,13 +73,13 @@ private:
  * Task to play a montage on a skeletal mesh component
  */
 USTRUCT( meta = ( DisplayName = "Play Montage", Category = "State Tree Tasks|Animation" ) )
-struct AIEXTENSIONS_API FAIExtStateTreePlayMontageTask : public FStateTreeTaskCommonBase
+struct AIEXTENSIONS_API FAIExtStateTreeTaskPlayMontage : public FStateTreeTaskCommonBase
 {
     GENERATED_BODY()
 
-    using UInstanceDataType = UAIExtStateTreePlayMontageTaskInstanceData;
+    using UInstanceDataType = UAIExtStateTreeTaskPlayMontageInstanceData;
 
-    FAIExtStateTreePlayMontageTask();
+    FAIExtStateTreeTaskPlayMontage();
 
     const UStruct * GetInstanceDataType() const override;
 
@@ -88,7 +88,7 @@ struct AIEXTENSIONS_API FAIExtStateTreePlayMontageTask : public FStateTreeTaskCo
     void ExitState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const override;
 };
 
-FORCEINLINE const UStruct * FAIExtStateTreePlayMontageTask::GetInstanceDataType() const
+FORCEINLINE const UStruct * FAIExtStateTreeTaskPlayMontage::GetInstanceDataType() const
 {
     return UInstanceDataType::StaticClass();
 }

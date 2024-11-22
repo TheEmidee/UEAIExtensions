@@ -1,10 +1,10 @@
-﻿#include "StateTree/Tasks/AIExtStateTreePlayMontageTask.h"
+﻿#include "StateTree/Tasks/AIExtStateTreeTaskPlayMontage.h"
 
 #include <Animation/AnimInstance.h>
 #include <Components/SkeletalMeshComponent.h>
 #include <StateTreeExecutionContext.h>
 
-EStateTreeRunStatus UAIExtStateTreePlayMontageTaskInstanceData::OnEnterState( const FStateTreeExecutionContext & context )
+EStateTreeRunStatus UAIExtStateTreeTaskPlayMontageInstanceData::OnEnterState( const FStateTreeExecutionContext & context )
 {
     if ( SkeletalMeshComponent == nullptr )
     {
@@ -46,12 +46,12 @@ EStateTreeRunStatus UAIExtStateTreePlayMontageTaskInstanceData::OnEnterState( co
     return RunStatus;
 }
 
-EStateTreeRunStatus UAIExtStateTreePlayMontageTaskInstanceData::OnTick( const FStateTreeExecutionContext & context, float delta_time )
+EStateTreeRunStatus UAIExtStateTreeTaskPlayMontageInstanceData::OnTick( const FStateTreeExecutionContext & context, float delta_time )
 {
     return RunStatus;
 }
 
-void UAIExtStateTreePlayMontageTaskInstanceData::OnExitState()
+void UAIExtStateTreeTaskPlayMontageInstanceData::OnExitState()
 {
     Cleanup();
 
@@ -61,7 +61,7 @@ void UAIExtStateTreePlayMontageTaskInstanceData::OnExitState()
     }
 }
 
-void UAIExtStateTreePlayMontageTaskInstanceData::Cleanup()
+void UAIExtStateTreeTaskPlayMontageInstanceData::Cleanup()
 {
     if ( AnimInstance != nullptr )
     {
@@ -69,7 +69,7 @@ void UAIExtStateTreePlayMontageTaskInstanceData::Cleanup()
     }
 }
 
-void UAIExtStateTreePlayMontageTaskInstanceData::OnMontageBlendingOut( UAnimMontage * montage, bool interrupted )
+void UAIExtStateTreeTaskPlayMontageInstanceData::OnMontageBlendingOut( UAnimMontage * montage, bool interrupted )
 {
     if ( montage == AnimMontage )
     {
@@ -77,11 +77,11 @@ void UAIExtStateTreePlayMontageTaskInstanceData::OnMontageBlendingOut( UAnimMont
     }
 }
 
-FAIExtStateTreePlayMontageTask::FAIExtStateTreePlayMontageTask()
+FAIExtStateTreeTaskPlayMontage::FAIExtStateTreeTaskPlayMontage()
 {
 }
 
-EStateTreeRunStatus FAIExtStateTreePlayMontageTask::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
+EStateTreeRunStatus FAIExtStateTreeTaskPlayMontage::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
 {
     TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
 
@@ -92,7 +92,7 @@ EStateTreeRunStatus FAIExtStateTreePlayMontageTask::EnterState( FStateTreeExecut
     return instance_data->OnEnterState( context );
 }
 
-EStateTreeRunStatus FAIExtStateTreePlayMontageTask::Tick( FStateTreeExecutionContext & context, const float delta_time ) const
+EStateTreeRunStatus FAIExtStateTreeTaskPlayMontage::Tick( FStateTreeExecutionContext & context, const float delta_time ) const
 {
     auto * instance_data = context.GetInstanceDataPtr< UInstanceDataType >( *this );
 
@@ -101,7 +101,7 @@ EStateTreeRunStatus FAIExtStateTreePlayMontageTask::Tick( FStateTreeExecutionCon
     return instance_data->OnTick( context, delta_time );
 }
 
-void FAIExtStateTreePlayMontageTask::ExitState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
+void FAIExtStateTreeTaskPlayMontage::ExitState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
 {
     TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
 
