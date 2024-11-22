@@ -10,12 +10,23 @@ class UAnimMontage;
 enum class EStateTreeRunStatus : uint8;
 struct FStateTreeTransitionResult;
 
-USTRUCT()
-struct AIEXTENSIONS_API FAIExtStateTreePlayMontageTaskInstanceData
+UCLASS()
+class AIEXTENSIONS_API UAIExtStateTreePlayMontageTaskInstanceData : public UObject
 {
     GENERATED_BODY()
 
-    FAIExtStateTreePlayMontageTaskInstanceData() = default;
+public:
+    UAIExtStateTreePlayMontageTaskInstanceData() = default;
+
+    EStateTreeRunStatus OnEnterState( const FStateTreeExecutionContext & context );
+    EStateTreeRunStatus OnTick( const FStateTreeExecutionContext & context, float delta_time );
+    void OnExitState();
+
+private:
+    void Cleanup();
+
+    UFUNCTION()
+    void OnMontageBlendingOut( UAnimMontage * montage, bool interrupted );
 
     /** The skeletal mesh component on which to play the montage. */
     UPROPERTY( EditAnywhere, Category = "Context" )
@@ -52,36 +63,32 @@ struct AIEXTENSIONS_API FAIExtStateTreePlayMontageTaskInstanceData
     /** The blend out to use when stopping the montage when the task ends */
     UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bStopMontageWhenTaskEnds" ) )
     float MontageStopBlendOutTime = 0.0f;
+
+    TWeakObjectPtr< UAnimInstance > AnimInstance;
+    FOnMontageBlendingOutStarted BlendingOutDelegate;
+    EStateTreeRunStatus RunStatus;
 };
 
 /**
  * Task to play a montage on a skeletal mesh component
  */
-USTRUCT( meta = ( DisplayName = "Play Montage" ) )
+USTRUCT( meta = ( DisplayName = "Play Montage", Category = "State Tree Tasks|Animation" ) )
 struct AIEXTENSIONS_API FAIExtStateTreePlayMontageTask : public FStateTreeTaskCommonBase
 {
     GENERATED_BODY()
 
-    using FInstanceDataType = FAIExtStateTreePlayMontageTaskInstanceData;
+    using UInstanceDataType = UAIExtStateTreePlayMontageTaskInstanceData;
 
     FAIExtStateTreePlayMontageTask();
 
-    const UStruct * GetInstanceDataType() const override
-    {
-        return FInstanceDataType::StaticStruct();
-    }
+    const UStruct * GetInstanceDataType() const override;
 
     EStateTreeRunStatus EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const override;
+    EStateTreeRunStatus Tick( FStateTreeExecutionContext & context, const float delta_time ) const override;
     void ExitState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const override;
-
-private:
-    UFUNCTION()
-    void OnMontageBlendingOut( UAnimMontage * montage, bool interrupted );
-
-    UFUNCTION()
-    void OnMontageEnded( UAnimMontage * montage, bool interrupted );
-
-    mutable TWeakObjectPtr< UAnimInstance > AnimInstance;
-    mutable FOnMontageBlendingOutStarted BlendingOutDelegate;
-    mutable FOnMontageEnded MontageEndedDelegate;
 };
+
+FORCEINLINE const UStruct * FAIExtStateTreePlayMontageTask::GetInstanceDataType() const
+{
+    return UInstanceDataType::StaticClass();
+}

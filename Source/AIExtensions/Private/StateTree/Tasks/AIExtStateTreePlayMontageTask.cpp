@@ -1,88 +1,113 @@
 ﻿#include "StateTree/Tasks/AIExtStateTreePlayMontageTask.h"
 
-#include "Animation/AnimInstance.h"
-
+#include <Animation/AnimInstance.h>
 #include <Components/SkeletalMeshComponent.h>
 #include <StateTreeExecutionContext.h>
 
-FAIExtStateTreePlayMontageTask::FAIExtStateTreePlayMontageTask()
+EStateTreeRunStatus UAIExtStateTreePlayMontageTaskInstanceData::OnEnterState( const FStateTreeExecutionContext & context )
 {
-    bShouldCallTick = false;
-}
-
-EStateTreeRunStatus FAIExtStateTreePlayMontageTask::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
-{
-    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
-
-    FInstanceDataType & instance_data = context.GetInstanceData( *this );
-
-    if ( instance_data.SkeletalMeshComponent == nullptr )
+    if ( SkeletalMeshComponent == nullptr )
     {
         return EStateTreeRunStatus::Failed;
     }
 
-    if ( instance_data.AnimMontage == nullptr )
+    if ( AnimMontage == nullptr )
     {
         return EStateTreeRunStatus::Failed;
     }
 
-    auto * anim_instance = instance_data.SkeletalMeshComponent->GetAnimInstance();
+    auto * anim_instance = SkeletalMeshComponent->GetAnimInstance();
 
     if ( anim_instance == nullptr )
     {
         return EStateTreeRunStatus::Failed;
     }
 
-    const auto montage_length = anim_instance->Montage_Play( instance_data.AnimMontage, instance_data.PlayRate, EMontagePlayReturnType::MontageLength, instance_data.StartingPosition );
+    AnimInstance = anim_instance;
+
+    const auto montage_length = AnimInstance->Montage_Play( AnimMontage, PlayRate, EMontagePlayReturnType::MontageLength, StartingPosition );
 
     if ( montage_length == 0.0f )
     {
         return EStateTreeRunStatus::Failed;
     }
 
-    if ( instance_data.StartingSection != NAME_None )
+    if ( StartingSection != NAME_None )
     {
-        anim_instance->Montage_JumpToSection( instance_data.StartingSection, instance_data.AnimMontage );
+        AnimInstance->Montage_JumpToSection( StartingSection, AnimMontage );
     }
 
-    if ( instance_data.bEndTaskWhenMontageEnds )
+    if ( bEndTaskWhenMontageEnds )
     {
-        BlendingOutDelegate.BindUObject( this, &FAIExtStateTreePlayMontageTask::OnMontageBlendingOut );
-        anim_instance->Montage_SetBlendingOutDelegate( BlendingOutDelegate, instance_data.AnimMontage );
-
-        MontageEndedDelegate.BindUObject( this, &FAIExtStateTreePlayMontageTask::OnMontageEnded );
-        anim_instance->Montage_SetEndDelegate( MontageEndedDelegate, instance_data.AnimMontage );
+        AnimInstance->OnMontageBlendingOut.AddUniqueDynamic( this, &ThisClass::OnMontageBlendingOut );
     }
 
-    return EStateTreeRunStatus::Running;
+    RunStatus = EStateTreeRunStatus::Running;
+    return RunStatus;
+}
+
+EStateTreeRunStatus UAIExtStateTreePlayMontageTaskInstanceData::OnTick( const FStateTreeExecutionContext & context, float delta_time )
+{
+    return RunStatus;
+}
+
+void UAIExtStateTreePlayMontageTaskInstanceData::OnExitState()
+{
+    Cleanup();
+
+    if ( bStopMontageWhenTaskEnds && AnimInstance.IsValid() )
+    {
+        AnimInstance->Montage_Stop( MontageStopBlendOutTime, AnimMontage );
+    }
+}
+
+void UAIExtStateTreePlayMontageTaskInstanceData::Cleanup()
+{
+    if ( AnimInstance != nullptr )
+    {
+        AnimInstance->OnMontageBlendingOut.RemoveDynamic( this, &ThisClass::OnMontageBlendingOut );
+    }
+}
+
+void UAIExtStateTreePlayMontageTaskInstanceData::OnMontageBlendingOut( UAnimMontage * montage, bool interrupted )
+{
+    if ( montage == AnimMontage )
+    {
+        RunStatus = ( bFailTaskWhenMontageIsInterrupted && interrupted ) ? EStateTreeRunStatus::Failed : EStateTreeRunStatus::Succeeded;
+    }
+}
+
+FAIExtStateTreePlayMontageTask::FAIExtStateTreePlayMontageTask()
+{
+}
+
+EStateTreeRunStatus FAIExtStateTreePlayMontageTask::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
+{
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
+    auto * instance_data = context.GetInstanceDataPtr< UInstanceDataType >( *this );
+
+    check( instance_data != nullptr );
+
+    return instance_data->OnEnterState( context );
+}
+
+EStateTreeRunStatus FAIExtStateTreePlayMontageTask::Tick( FStateTreeExecutionContext & context, const float delta_time ) const
+{
+    auto * instance_data = context.GetInstanceDataPtr< UInstanceDataType >( *this );
+
+    check( instance_data != nullptr );
+
+    return instance_data->OnTick( context, delta_time );
 }
 
 void FAIExtStateTreePlayMontageTask::ExitState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
 {
     TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
 
-    BlendingOutDelegate.Unbind();
-    MontageEndedDelegate.Unbind();
+    auto * instance_data = context.GetInstanceDataPtr< UInstanceDataType >( *this );
 
-    FInstanceDataType & instance_data = context.GetInstanceData( *this );
+    check( instance_data != nullptr );
 
-    if ( !instance_data.bStopMontageWhenTaskEnds )
-    {
-        return;
-    }
-
-    if ( AnimInstance.IsValid() )
-    {
-        AnimInstance->Montage_Stop( instance_data.MontageStopBlendOutTime, instance_data.AnimMontage );
-    }
-}
-
-void FAIExtStateTreePlayMontageTask::OnMontageBlendingOut( UAnimMontage * montage, bool interrupted )
-{
-    RunStatus =
-        // check UStateTreeTask_PlayContextualAnim_InstanceData
-}
-
-void FAIExtStateTreePlayMontageTask::OnMontageEnded( UAnimMontage * montage, bool interrupted )
-{
+    instance_data->OnExitState();
 }
