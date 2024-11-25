@@ -26,7 +26,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetActorOwnedTagsInstanceData
 /**
  * Task to get the actors owned tags each tick
  */
-USTRUCT( meta = ( DisplayName = "Get Actor Owned Tags", Category = "State Tree Tasks|Helpers" ) )
+USTRUCT( meta = ( DisplayName = "Get Actor Owned Tags", Category = "State Tree Tasks|Gameplay Tags" ) )
 struct AIEXTENSIONS_API FAIExtStateTreeTaskGetActorOwnedTags : public FStateTreeTaskCommonBase
 {
     GENERATED_BODY()
