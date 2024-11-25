@@ -4,6 +4,7 @@
 #include <NavFilters/NavigationQueryFilter.h>
 #include <StateTreeExecutionContext.h>
 #include <Tasks/AITask_MoveTo.h>
+#include <VisualLogger/VisualLogger.h>
 
 EStateTreeRunStatus FAIExtStateTreeTaskMoveTo::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
 {
