@@ -39,12 +39,12 @@ void FAIExtStateTreeTaskRunEnvironmentQueryInstanceData::OnQueryFinished( const 
             {
                 case EAIStateTreeTaskRunEnvironmentQueryResultType::Actor:
                 {
-                    SingleActor = env_query_result->GetItemAsActor( FMath::RandRange( 0, item_count - 1 ) );
+                    SingleActor = env_query_result->GetItemAsActor( 0 );
                 }
                 break;
                 case EAIStateTreeTaskRunEnvironmentQueryResultType::Vector:
                 {
-                    SingleLocation = env_query_result->GetItemAsLocation( FMath::RandRange( 0, item_count - 1 ) );
+                    SingleLocation = env_query_result->GetItemAsLocation( 0 );
                 }
                 break;
                 default:
