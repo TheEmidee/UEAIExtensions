@@ -5,14 +5,14 @@
 #include <StateTreeExecutionContext.h>
 #include <VisualLogger/VisualLogger.h>
 
-void FAIExtStateTreeTaskRunEnvironmentQueryInstanceData::OnQueryFinished( const TSharedPtr< FEnvQueryResult > & env_query_result, FStateTreeExecutionContext & context )
+void FAIExtStateTreeTaskRunEnvironmentQueryInstanceData::OnQueryFinished( const TSharedPtr< FEnvQueryResult > & env_query_result, UObject * context_owner, FStateTreeEventQueue & event_queue )
 {
     TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
 
     if ( !env_query_result->IsSuccessful() )
     {
         RunStatus = EStateTreeRunStatus::Failed;
-        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery query failed." ) );
+        UE_VLOG( context_owner, LogStateTree, Error, TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery query failed." ) );
         return;
     }
 
@@ -20,7 +20,7 @@ void FAIExtStateTreeTaskRunEnvironmentQueryInstanceData::OnQueryFinished( const 
     if ( item_count == 0 )
     {
         RunStatus = EStateTreeRunStatus::Failed;
-        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery no items returned in the query." ) );
+        UE_VLOG( context_owner, LogStateTree, Error, TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery no items returned in the query." ) );
         return;
     }
 
@@ -86,8 +86,8 @@ void FAIExtStateTreeTaskRunEnvironmentQueryInstanceData::OnQueryFinished( const 
 
     if ( StateTreeEvent.Tag.IsValid() )
     {
-        UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery send state tree event %s." ), *StateTreeEvent.Tag.ToString() );
-        context.GetMutableEventQueue().SendEvent( ContextOwner, StateTreeEvent.Tag, StateTreeEvent.Payload, StateTreeEvent.Origin );
+        UE_VLOG( context_owner, LogStateTree, Log, TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery send state tree event %s." ), *StateTreeEvent.Tag.ToString() );
+        event_queue.SendEvent( ContextOwner, StateTreeEvent.Tag, StateTreeEvent.Payload, StateTreeEvent.Origin );
     }
 }
 
@@ -120,8 +120,10 @@ EStateTreeRunStatus FAIExtStateTreeTaskRunEnvironmentQuery::EnterState( FStateTr
     FEnvQueryRequest query_request( instance_data.QueryTemplate, instance_data.Querier );
     query_request.SetNamedParams( instance_data.Params );
 
-    instance_data.QueryIndex = environment_query_manager->RunQuery( query_request, instance_data.RunMode, FQueryFinishedSignature::CreateLambda( [ &instance_data, &context ]( TSharedPtr< FEnvQueryResult > env_query_result ) {
-        instance_data.OnQueryFinished( env_query_result, context );
+    auto & event_queue = context.GetMutableEventQueue();
+
+    instance_data.QueryIndex = environment_query_manager->RunQuery( query_request, instance_data.RunMode, FQueryFinishedSignature::CreateLambda( [ &instance_data, &event_queue, context_owner = context.GetOwner() ]( TSharedPtr< FEnvQueryResult > env_query_result ) {
+        instance_data.OnQueryFinished( env_query_result, context_owner, event_queue );
     } ) );
 
     instance_data.RunStatus = EStateTreeRunStatus::Running;
