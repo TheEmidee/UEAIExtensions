@@ -42,7 +42,7 @@ EStateTreeRunStatus UAIExtStateTreeTaskPlayMontageInstanceData::OnEnterState( co
     if ( StartingSection != NAME_None )
     {
         AnimInstance->Montage_JumpToSection( StartingSection, AnimMontage );
-        UE_VLOG( context.GetOwner(), LogStateTree, Log, FString::Printf( TEXT( "FAIExtStateTreeTaskPlayMontage jumped to section %s." ), *StartingSection.ToString() ) );
+        UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskPlayMontage jumped to section %s." ), *StartingSection.ToString() );
     }
 
     if ( bEndTaskWhenMontageEnds )

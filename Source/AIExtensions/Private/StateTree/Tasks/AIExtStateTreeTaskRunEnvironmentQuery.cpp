@@ -86,7 +86,7 @@ void FAIExtStateTreeTaskRunEnvironmentQueryInstanceData::OnQueryFinished( const 
 
     if ( StateTreeEvent.Tag.IsValid() )
     {
-        UE_VLOG( context.GetOwner(), LogStateTree, Log, FString::Printf( TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery send state tree event %s." ), *StateTreeEvent.Tag.ToString() ) );
+        UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery send state tree event %s." ), *StateTreeEvent.Tag.ToString() );
         context.GetMutableEventQueue().SendEvent( ContextOwner, StateTreeEvent.Tag, StateTreeEvent.Payload, StateTreeEvent.Origin );
     }
 }
@@ -127,7 +127,7 @@ EStateTreeRunStatus FAIExtStateTreeTaskRunEnvironmentQuery::EnterState( FStateTr
     instance_data.RunStatus = EStateTreeRunStatus::Running;
     instance_data.ContextOwner = context.GetOwner();
 
-    UE_VLOG( context.GetOwner(), LogStateTree, Log, FString::Printf( TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery run query %s on %s." ), *GetNameSafe( instance_data.QueryTemplate.Get() ), *GetNameSafe( instance_data.Querier.Get() ) ) );
+    UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskRunEnvironmentQuery run query %s on %s." ), *GetNameSafe( instance_data.QueryTemplate.Get() ), *GetNameSafe( instance_data.Querier.Get() ) );
 
     return EStateTreeRunStatus::Running;
 }

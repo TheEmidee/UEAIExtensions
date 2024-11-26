@@ -49,14 +49,14 @@ EStateTreeRunStatus FAIExtStateTreeTaskApplyGameplayEffect::EnterState( FStateTr
         instance_data.Handle = instance_data.AbilitySystemComponent->ApplyGameplayEffectToTarget( gameplay_effect, target_asc, instance_data.Level, effect_context_handle );
         instance_data.UsedASC = target_asc;
 
-        UE_VLOG( context.GetOwner(), LogStateTree, Log, FString::Printf( TEXT( "FAIExtStateTreeTaskApplyGameplayEffect applied gameplay effect %s on target." ), *GetNameSafe( instance_data.EffectClass ) ) );
+        UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskApplyGameplayEffect applied gameplay effect %s on target." ), *GetNameSafe( instance_data.EffectClass ) );
     }
     else
     {
         instance_data.Handle = instance_data.AbilitySystemComponent->ApplyGameplayEffectToSelf( gameplay_effect, instance_data.Level, effect_context_handle );
         instance_data.UsedASC = instance_data.AbilitySystemComponent;
 
-        UE_VLOG( context.GetOwner(), LogStateTree, Log, FString::Printf( TEXT( "FAIExtStateTreeTaskApplyGameplayEffect applied gameplay effect %s on self." ), *GetNameSafe( instance_data.EffectClass ) ) );
+        UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskApplyGameplayEffect applied gameplay effect %s on self." ), *GetNameSafe( instance_data.EffectClass ) );
     }
 
     return EStateTreeRunStatus::Running;
