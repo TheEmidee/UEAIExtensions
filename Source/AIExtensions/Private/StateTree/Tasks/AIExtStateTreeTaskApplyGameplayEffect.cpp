@@ -34,7 +34,7 @@ EStateTreeRunStatus FAIExtStateTreeTaskApplyGameplayEffect::EnterState( FStateTr
         return EStateTreeRunStatus::Failed;
     }
 
-    UAbilitySystemComponent * target_asc = instance_data.TargetAbilitySystemComponent;
+    auto target_asc = instance_data.TargetAbilitySystemComponent;
 
     if ( target_asc == nullptr )
     {

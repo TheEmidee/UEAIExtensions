@@ -1,7 +1,6 @@
 ﻿#pragma once
 
-#include "GameplayAbilitySpecHandle.h"
-
+#include <GameplayAbilitySpecHandle.h>
 #include <StateTreeTaskBase.h>
 #include <Templates/SubclassOf.h>
 
@@ -19,7 +18,7 @@ class AIEXTENSIONS_API UAIExtStateTreeTaskActivateAbilityInstanceData : public U
 
 public:
     UAIExtStateTreeTaskActivateAbilityInstanceData() = default;
-    
+
     void OnAbilityEnded( const FAbilityEndedData & ability_ended_data );
 
     /** The ability system component on which to activate the ability. */
