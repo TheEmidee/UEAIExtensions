@@ -1,5 +1,7 @@
 ﻿#include "StateTree/Tasks/AIExtStateTreeTaskActivateAbility.h"
 
+#include "VisualLogger/VisualLogger.h"
+
 #include <AbilitySystemBlueprintLibrary.h>
 #include <AbilitySystemComponent.h>
 #include <Components/SkeletalMeshComponent.h>
@@ -39,11 +41,13 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
 
     if ( instance_data.AbilitySystemComponent == nullptr )
     {
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskActivateAbility can't activate gameplay ability because no ability system was bound." ) );
         return EStateTreeRunStatus::Failed;
     }
 
     if ( instance_data.AbilityClass == nullptr )
     {
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskActivateAbility can't activate gameplay ability because no gameplay ability was bound." ) );
         return EStateTreeRunStatus::Failed;
     }
 
@@ -58,6 +62,7 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
 
     if ( !instance_data.AbilitySpecHandle.IsValid() )
     {
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskActivateAbility can't activate gameplay ability because the ability was not granted to the actor." ) );
         return EStateTreeRunStatus::Failed;
     }
 
@@ -67,14 +72,18 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
 
     if ( !could_activate_ability && instance_data.bEndTaskWhenAbilityEnds )
     {
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskActivateAbility failed to activate the ability." ) );
         return EStateTreeRunStatus::Failed;
     }
 
+    UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskActivateAbility successfully activated the ability." ) );
     return EStateTreeRunStatus::Running;
 }
 
 EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::Tick( FStateTreeExecutionContext & context, const float delta_time ) const
 {
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
     auto & instance_data = context.GetInstanceData< UInstanceDataType >( *this );
 
     return instance_data.RunStatus;
@@ -97,5 +106,7 @@ void FAIExtStateTreeTaskActivateAbility::ExitState( FStateTreeExecutionContext &
          instance_data.AbilitySpecHandle.IsValid() )
     {
         instance_data.AbilitySystemComponent->CancelAbilityHandle( instance_data.AbilitySpecHandle );
+
+        UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskActivateAbility cancelled gameplay ability." ) );
     }
 }

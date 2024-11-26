@@ -3,16 +3,19 @@
 #include <Animation/AnimInstance.h>
 #include <Components/SkeletalMeshComponent.h>
 #include <StateTreeExecutionContext.h>
+#include <VisualLogger/VisualLogger.h>
 
 EStateTreeRunStatus UAIExtStateTreeTaskPlayMontageInstanceData::OnEnterState( const FStateTreeExecutionContext & context )
 {
     if ( SkeletalMeshComponent == nullptr )
     {
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskPlayMontage failed because no skeletal mesh component is set." ) );
         return EStateTreeRunStatus::Failed;
     }
 
     if ( AnimMontage == nullptr )
     {
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskPlayMontage failed because no anim montage is set." ) );
         return EStateTreeRunStatus::Failed;
     }
 
@@ -20,6 +23,7 @@ EStateTreeRunStatus UAIExtStateTreeTaskPlayMontageInstanceData::OnEnterState( co
 
     if ( anim_instance == nullptr )
     {
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskPlayMontage failed because there's no anim instance on the skeletal mesh." ) );
         return EStateTreeRunStatus::Failed;
     }
 
@@ -29,12 +33,16 @@ EStateTreeRunStatus UAIExtStateTreeTaskPlayMontageInstanceData::OnEnterState( co
 
     if ( montage_length == 0.0f )
     {
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskPlayMontage failed because the montage could not be played." ) );
         return EStateTreeRunStatus::Failed;
     }
+
+    UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskPlayMontage played montage." ) );
 
     if ( StartingSection != NAME_None )
     {
         AnimInstance->Montage_JumpToSection( StartingSection, AnimMontage );
+        UE_VLOG( context.GetOwner(), LogStateTree, Log, FString::Printf( TEXT( "FAIExtStateTreeTaskPlayMontage jumped to section %s." ), *StartingSection.ToString() ) );
     }
 
     if ( bEndTaskWhenMontageEnds )
@@ -75,10 +83,6 @@ void UAIExtStateTreeTaskPlayMontageInstanceData::OnMontageBlendingOut( UAnimMont
     {
         RunStatus = ( bFailTaskWhenMontageIsInterrupted && interrupted ) ? EStateTreeRunStatus::Failed : EStateTreeRunStatus::Succeeded;
     }
-}
-
-FAIExtStateTreeTaskPlayMontage::FAIExtStateTreeTaskPlayMontage()
-{
 }
 
 EStateTreeRunStatus FAIExtStateTreeTaskPlayMontage::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const

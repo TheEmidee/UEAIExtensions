@@ -79,7 +79,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskPlayMontage : public FStateTreeTaskCo
 
     using UInstanceDataType = UAIExtStateTreeTaskPlayMontageInstanceData;
 
-    FAIExtStateTreeTaskPlayMontage();
+    FAIExtStateTreeTaskPlayMontage() = default;
 
     const UStruct * GetInstanceDataType() const override;
 

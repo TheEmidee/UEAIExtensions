@@ -22,7 +22,7 @@ struct FAIExtStateTreeTaskRunEnvironmentQueryInstanceData
 {
     GENERATED_BODY()
 
-    void OnQueryFinished( const TSharedPtr< FEnvQueryResult > & env_query_result, FStateTreeEventQueue & event_queue );
+    void OnQueryFinished( const TSharedPtr< FEnvQueryResult > & env_query_result, FStateTreeExecutionContext & context );
 
     // The querier of the query
     UPROPERTY( EditAnywhere, Category = "Context" )

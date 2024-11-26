@@ -8,6 +8,8 @@
 
 EStateTreeRunStatus FAIExtStateTreeTaskMoveTo::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
 {
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
     auto & instance_data = context.GetInstanceData( *this );
 
     if ( instance_data.AIController == nullptr )
@@ -27,7 +29,10 @@ EStateTreeRunStatus FAIExtStateTreeTaskMoveTo::EnterState( FStateTreeExecutionCo
 
 EStateTreeRunStatus FAIExtStateTreeTaskMoveTo::Tick( FStateTreeExecutionContext & context, const float delta_time ) const
 {
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
     const auto & instance_data = context.GetInstanceData( *this );
+
     if ( instance_data.MoveToTask != nullptr )
     {
         if ( instance_data.MoveToTask->GetState() == EGameplayTaskState::Finished )
@@ -51,6 +56,8 @@ EStateTreeRunStatus FAIExtStateTreeTaskMoveTo::Tick( FStateTreeExecutionContext 
 
 void FAIExtStateTreeTaskMoveTo::ExitState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
 {
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
     if ( const auto & instance_data = context.GetInstanceData( *this );
         instance_data.MoveToTask != nullptr && instance_data.MoveToTask->GetState() != EGameplayTaskState::Finished )
     {
@@ -61,6 +68,8 @@ void FAIExtStateTreeTaskMoveTo::ExitState( FStateTreeExecutionContext & context,
 
 UAITask_MoveTo * FAIExtStateTreeTaskMoveTo::PrepareMoveToTask( FStateTreeExecutionContext & context, AAIController & controller, UAITask_MoveTo * existing_task, FAIMoveRequest & move_request ) const
 {
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
     const auto & instance_data = context.GetInstanceData( *this );
     auto * move_task = existing_task != nullptr
                            ? existing_task
@@ -76,6 +85,8 @@ UAITask_MoveTo * FAIExtStateTreeTaskMoveTo::PrepareMoveToTask( FStateTreeExecuti
 
 EStateTreeRunStatus FAIExtStateTreeTaskMoveTo::PerformMoveTask( FStateTreeExecutionContext & context, AAIController & controller ) const
 {
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
     auto & instance_data = context.GetInstanceData( *this );
 
     FAIMoveRequest move_request;
