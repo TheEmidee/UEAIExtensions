@@ -26,6 +26,14 @@
     {
       "Name": "GameplayBehaviors",
       "Enabled": true
+    },
+    {
+      "Name": "StateTree",
+      "Enabled": true
+    },
+    {
+      "Name": "StructUtils",
+      "Enabled": true
     }
   ]
 }
