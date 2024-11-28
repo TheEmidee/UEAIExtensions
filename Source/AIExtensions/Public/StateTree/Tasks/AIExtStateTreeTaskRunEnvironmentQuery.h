@@ -45,7 +45,7 @@ struct FAIExtStateTreeTaskRunEnvironmentQueryInstanceData
 
     // Set to true to end the task when the query succeeds
     UPROPERTY( EditAnywhere, Category = "Parameter" )
-    bool bFinishTaskOnSuccess;
+    bool bFinishTaskOnSuccess = false;
 
     // If this is set, then a state tree event will be sent when the query succeeds
     UPROPERTY( EditAnywhere, Category = "Parameter" )
@@ -61,7 +61,7 @@ struct FAIExtStateTreeTaskRunEnvironmentQueryInstanceData
 
     // Will contain the best location found by the query when the run mode is not set to AllMatching
     UPROPERTY( EditAnywhere, Category = "Output" )
-    FVector SingleLocation;
+    FVector SingleLocation = FVector::ZeroVector;
 
     // Will contain all the locations that match the query when the run mode is set to AllMatching
     UPROPERTY( EditAnywhere, Category = "Output" )

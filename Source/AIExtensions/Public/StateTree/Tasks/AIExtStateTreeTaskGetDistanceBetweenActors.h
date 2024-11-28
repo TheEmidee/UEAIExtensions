@@ -24,7 +24,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetDistanceBetweenActorsInstanceData
 
     /** The distance between the actors  */
     UPROPERTY( EditAnywhere, Category = "Output" )
-    float Distance;
+    float Distance = 0.0f;
 };
 
 /**
