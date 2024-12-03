@@ -20,7 +20,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetActorRotationInstanceData
 
     /** The actor rotation. */
     UPROPERTY( EditAnywhere, Category = "Output" )
-    FRotator Rotation;
+    FRotator Rotation = FRotator::ZeroRotator;
 };
 
 /**

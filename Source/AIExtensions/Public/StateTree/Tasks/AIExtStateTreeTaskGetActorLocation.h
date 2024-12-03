@@ -20,7 +20,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetActorLocationInstanceData
 
     /** The actor location. */
     UPROPERTY( EditAnywhere, Category = "Output" )
-    FVector Location;
+    FVector Location = FVector::ZeroVector;
 };
 
 /**

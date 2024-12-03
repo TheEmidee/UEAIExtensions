@@ -66,6 +66,7 @@ void FAIExtStateTreeTaskRunEnvironmentQueryInstanceData::OnQueryFinished( const 
                 break;
                 case EAIStateTreeTaskRunEnvironmentQueryResultType::Vector:
                 {
+                    AllMatchingLocations.Reset();
                     env_query_result->GetAllAsLocations( AllMatchingLocations );
                 }
                 break;
