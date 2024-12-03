@@ -10,13 +10,22 @@ EStateTreeRunStatus FAIExtStateTreeTaskGetDistanceBetweenActors::Tick( FStateTre
 
     auto & instance_data = context.GetInstanceData( *this );
 
-    if ( instance_data.Actor1 != nullptr && instance_data.OtherComponent != nullptr )
+    if ( instance_data.Actor1 == nullptr )
+    {
+        return EStateTreeRunStatus::Failed;
+    }
+
+    if ( instance_data.OtherComponent != nullptr )
     {
         instance_data.Distance = FVector::Distance( instance_data.Actor1->GetActorLocation(), instance_data.OtherComponent->GetComponentLocation() );
     }
-    else if ( instance_data.Actor1 != nullptr && instance_data.Actor2 != nullptr )
+    else if ( instance_data.Actor2 != nullptr )
     {
         instance_data.Distance = FVector::Distance( instance_data.Actor1->GetActorLocation(), instance_data.Actor2->GetActorLocation() );
+    }
+    else
+    {
+        return EStateTreeRunStatus::Failed;
     }
 
     return EStateTreeRunStatus::Running;
