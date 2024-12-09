@@ -19,11 +19,11 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetDistanceBetweenActorsInstanceData
     TObjectPtr< AActor > Actor1 = nullptr;
 
     /** The second actor  */
-    UPROPERTY( EditAnywhere, Category = "Context" )
+    UPROPERTY( EditAnywhere, Category = "Parameter" )
     TObjectPtr< AActor > Actor2 = nullptr;
 
     /** The Scene Component. Has precedence over Actor2 */
-    UPROPERTY( EditAnywhere, Category = "Input" )
+    UPROPERTY( EditAnywhere, Category = "Parameter" )
     TObjectPtr< USceneComponent > OtherComponent = nullptr;
 
     /** The distance between the actors  */
