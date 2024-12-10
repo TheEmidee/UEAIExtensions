@@ -10,7 +10,7 @@ EStateTreeRunStatus FAIExtStateTreeTaskShowActor::EnterState( FStateTreeExecutio
     {
         instance_data.Actor->SetActorHiddenInGame( !instance_data.bIsVisible );
 
-        return EStateTreeRunStatus::Succeeded;
+        return EStateTreeRunStatus::Running;
     }
 
     return EStateTreeRunStatus::Failed;

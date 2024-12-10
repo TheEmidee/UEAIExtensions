@@ -10,7 +10,8 @@ EStateTreeRunStatus FAIExtStateTreeTaskEnableComponentCollision::EnterState( FSt
     {
         instance_data.Component->SetCollisionEnabled( instance_data.NewCollisionType );
 
-        return EStateTreeRunStatus::Succeeded;
+        return EStateTreeRunStatus::Running;
     }
+
     return EStateTreeRunStatus::Failed;
 }

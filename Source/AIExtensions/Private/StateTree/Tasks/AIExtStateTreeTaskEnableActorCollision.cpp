@@ -10,7 +10,7 @@ EStateTreeRunStatus FAIExtStateTreeTaskEnableActorCollision::EnterState( FStateT
     {
         instance_data.Actor->SetActorEnableCollision( instance_data.bCollisionEnabled );
 
-        return EStateTreeRunStatus::Succeeded;
+        return EStateTreeRunStatus::Running;
     }
 
     return EStateTreeRunStatus::Failed;
