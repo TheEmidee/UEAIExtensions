@@ -22,7 +22,7 @@ struct FAIExtStateTreeTaskEnableComponentCollisionInstanceData
 /**
  * Task To enable/ disable collision for primitive component
  */
-USTRUCT( meta = ( DisplayName = "Enable component Collisions", Category = "State Tree Tasks|primitive component" ) )
+USTRUCT( meta = ( DisplayName = "Enable component Collisions", Category = "State Tree Tasks|Primitive Component" ) )
 struct AIEXTENSIONS_API FAIExtStateTreeTaskEnableComponentCollision : public FStateTreeTaskCommonBase
 {
     GENERATED_BODY()
