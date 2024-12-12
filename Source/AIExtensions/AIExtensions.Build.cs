@@ -22,7 +22,8 @@ namespace UnrealBuildTool.Rules
 					"GameplayTags",
 					"StateTreeModule",
 					"NavigationSystem",
-					"StructUtils",
+					"StructUtils", 
+					"SmartObjectsModule",
 					"GameplayStateTreeModule"
 				}
 			);
