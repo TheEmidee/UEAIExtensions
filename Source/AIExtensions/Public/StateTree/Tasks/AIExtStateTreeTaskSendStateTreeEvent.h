@@ -2,6 +2,7 @@
 
 #include <CoreMinimal.h>
 #include <StateTreeTaskBase.h>
+#include <StructUtils/Public/StructView.h>
 
 #include "AIExtStateTreeTaskSendStateTreeEvent.generated.h"
 
@@ -21,7 +22,7 @@ struct FAIExtStateTreeTaskSendStateTreeEventInstanceData
     FGameplayTag EventTag;
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
-    FConstStructView payload;
+    FInstancedStruct Payload;
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
     FName Origin;

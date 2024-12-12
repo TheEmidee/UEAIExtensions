@@ -11,7 +11,7 @@ EStateTreeRunStatus FAIExtStateTreeTaskSendStateTreeEvent::EnterState( FStateTre
 
     if ( instance_data.StateTreeComponent != nullptr )
     {
-        instance_data.StateTreeComponent->SendStateTreeEvent( instance_data.EventTag, instance_data.payload, instance_data.Origin );
+        instance_data.StateTreeComponent->SendStateTreeEvent( instance_data.EventTag, instance_data.Payload, instance_data.Origin );
 
         return EStateTreeRunStatus::Running;
     }
