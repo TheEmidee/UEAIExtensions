@@ -19,6 +19,12 @@ struct FAIExtStateTreeTaskSendStateTreeEventInstanceData
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
     FGameplayTag EventTag;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter" )
+    FConstStructView payload;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter" )
+    FName Origin;
 };
 
 /**

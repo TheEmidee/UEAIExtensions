@@ -4,6 +4,8 @@
 
 EStateTreeRunStatus FAIExtStateTreeTaskEnableComponentCollision::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
 {
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
     const auto & instance_data = context.GetInstanceData( *this );
 
     if ( instance_data.Component != nullptr )
