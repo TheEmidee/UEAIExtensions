@@ -2,7 +2,6 @@
 
 #include <CoreMinimal.h>
 #include <StateTreeTaskBase.h>
-#include <StructUtils/Public/StructView.h>
 
 #include "AIExtStateTreeTaskSendStateTreeEvent.generated.h"
 
