@@ -5,7 +5,6 @@
 
 #include "AIExtStateTreeTaskSmartObjectSetSlotEnabled.generated.h"
 
-enum class EStateTreeRunStatus : uint8;
 struct FStateTreeTransitionResult;
 
 USTRUCT()
