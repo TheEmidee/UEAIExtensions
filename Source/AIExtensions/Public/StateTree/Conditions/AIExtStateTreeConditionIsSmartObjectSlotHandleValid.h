@@ -5,6 +5,8 @@
 
 #include "AIExtStateTreeConditionIsSmartObjectSlotHandleValid.generated.h"
 
+class USmartObjectSubsystem;
+
 USTRUCT()
 struct FAIExtStateTreeConditionIsSmartObjectSlotHandleValidInstanceData
 {

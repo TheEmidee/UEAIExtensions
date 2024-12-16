@@ -23,7 +23,8 @@ namespace UnrealBuildTool.Rules
 					"StateTreeModule",
 					"NavigationSystem",
 					"StructUtils", 
-					"SmartObjectsModule"
+					"SmartObjectsModule",
+					"GameplayStateTreeModule"
 				}
 			);
 		}

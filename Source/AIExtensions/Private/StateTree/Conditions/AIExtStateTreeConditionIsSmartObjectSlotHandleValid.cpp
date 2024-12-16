@@ -13,7 +13,7 @@ bool FAIExtStateTreeConditionIsSmartObjectSlotHandleValid::Link( FStateTreeLinke
 bool FAIExtStateTreeConditionIsSmartObjectSlotHandleValid::TestCondition( FStateTreeExecutionContext & context ) const
 {
     const auto & smart_object_subsystem = context.GetExternalData( SmartObjectSubsystemHandle );
-    const auto & instance_data = context.GetInstanceData( *this );
+    const auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
 
     return ( instance_data.Slot.IsValid() && smart_object_subsystem.IsSmartObjectSlotValid( instance_data.Slot ) ) ^ bInvert;
 }

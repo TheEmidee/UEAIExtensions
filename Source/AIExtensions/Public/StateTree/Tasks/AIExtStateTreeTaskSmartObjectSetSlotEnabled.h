@@ -5,7 +5,6 @@
 
 #include "AIExtStateTreeTaskSmartObjectSetSlotEnabled.generated.h"
 
-enum class EStateTreeRunStatus : uint8;
 struct FStateTreeTransitionResult;
 
 USTRUCT()
@@ -37,13 +36,13 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskSmartObjectSetSlotEnabled : public FS
     FAIExtStateTreeTaskSmartObjectSetSlotEnabled() = default;
 
     const UStruct * GetInstanceDataType() const override;
-    bool Link(FStateTreeLinker & linker) override;
+    bool Link( FStateTreeLinker & linker ) override;
 
     EStateTreeRunStatus EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const override;
 
 protected:
     /** Handle to retrieve USmartObjectSubsystem. */
-    TStateTreeExternalDataHandle<USmartObjectSubsystem> SmartObjectSubsystemHandle;
+    TStateTreeExternalDataHandle< USmartObjectSubsystem > SmartObjectSubsystemHandle;
 };
 
 FORCEINLINE const UStruct * FAIExtStateTreeTaskSmartObjectSetSlotEnabled::GetInstanceDataType() const
