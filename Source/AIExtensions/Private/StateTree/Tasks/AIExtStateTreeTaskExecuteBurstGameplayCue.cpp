@@ -1,0 +1,18 @@
+#include "StateTree/Tasks/AIExtStateTreeTaskExecuteBurstGameplayCue.h"
+
+#include <GameplayCueFunctionLibrary.h>
+#include <StateTreeExecutionContext.h>
+
+EStateTreeRunStatus FAIExtStateTreeTaskExecuteBurstGameplayCue::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
+{
+    TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
+
+    const auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
+
+    if ( instance_data.Actor != nullptr )
+    {
+        UGameplayCueFunctionLibrary::ExecuteGameplayCueOnActor( instance_data.Actor, instance_data.GameplayCueTag, instance_data.Parameters );
+    }
+
+    return EStateTreeRunStatus::Running;
+}
