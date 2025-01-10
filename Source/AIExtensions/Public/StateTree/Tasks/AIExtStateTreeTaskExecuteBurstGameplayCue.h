@@ -6,7 +6,7 @@
 
 #include "AIExtStateTreeTaskExecuteBUrstGameplayCue.generated.h"
 
-USTRUCT( BlueprintType )
+USTRUCT()
 struct FAIExtStateTreeTaskExecuteBurstGameplayCueInstanceData
 {
     GENERATED_BODY()
