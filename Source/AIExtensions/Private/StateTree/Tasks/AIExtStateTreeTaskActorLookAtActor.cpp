@@ -11,7 +11,9 @@ EStateTreeRunStatus FAIExtStateTreeTaskActorLookAtActor::EnterState( FStateTreeE
     if ( instance_data.ActorToRotate != nullptr && instance_data.ActorToLookAt != nullptr )
     {
         instance_data.ActorToRotate->SetActorRotation( ( instance_data.ActorToLookAt->GetActorLocation() - instance_data.ActorToRotate->GetActorLocation() ).Rotation() );
+
+        return EStateTreeRunStatus::Running;
     }
 
-    return EStateTreeRunStatus::Running;
+    return EStateTreeRunStatus::Failed;
 }

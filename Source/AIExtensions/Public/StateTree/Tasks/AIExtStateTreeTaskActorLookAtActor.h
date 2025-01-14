@@ -23,7 +23,7 @@ struct FAIExtStateTreeTaskActorLookAtActorInstanceData
  * Task to orient an actor to another actor
  */
 USTRUCT( meta = ( DisplayName = "Actor Look At Actor", Category = "State Tree Tasks|Actors" ) )
-struct AIEXTENSIONS_API FAIExtStateTreeTaskActorLookAtActor : public FStateTreeTaskCommonBase
+struct AIEXTENSIONS_API FAIExtStateTreeTaskActorLookAtActor final : public FStateTreeTaskCommonBase
 {
     GENERATED_BODY()
 

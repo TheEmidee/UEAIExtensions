@@ -26,8 +26,8 @@ struct FAIExtStateTreeTaskExecuteBurstGameplayCueInstanceData
 /**
  * Task to execute a gameplay cue on an actor
  */
-USTRUCT( meta = ( DisplayName = "Execute Burst GameplayCue", Category = "State Tree Tasks|Actor" ) )
-struct AIEXTENSIONS_API FAIExtStateTreeTaskExecuteBurstGameplayCue : public FStateTreeTaskCommonBase
+USTRUCT( meta = ( DisplayName = "Execute Burst GameplayCue", Category = "State Tree Tasks|GAS" ) )
+struct AIEXTENSIONS_API FAIExtStateTreeTaskExecuteBurstGameplayCue final : public FStateTreeTaskCommonBase
 {
     GENERATED_BODY()
 

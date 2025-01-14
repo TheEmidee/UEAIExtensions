@@ -9,10 +9,12 @@ EStateTreeRunStatus FAIExtStateTreeTaskExecuteBurstGameplayCue::EnterState( FSta
 
     const auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
 
-    if ( instance_data.Actor != nullptr )
+    if ( instance_data.Actor != nullptr && instance_data.GameplayCueTag.GetTagName() != NAME_None )
     {
         UGameplayCueFunctionLibrary::ExecuteGameplayCueOnActor( instance_data.Actor, instance_data.GameplayCueTag, instance_data.Parameters );
+
+        return EStateTreeRunStatus::Running;
     }
 
-    return EStateTreeRunStatus::Running;
+    return EStateTreeRunStatus::Failed;
 }
