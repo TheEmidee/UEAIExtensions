@@ -32,10 +32,6 @@
       "Enabled": true
     },
     {
-      "Name": "StructUtils",
-      "Enabled": true
-    },
-    {
       "Name": "SmartObjects",
       "Enabled": true
     },
