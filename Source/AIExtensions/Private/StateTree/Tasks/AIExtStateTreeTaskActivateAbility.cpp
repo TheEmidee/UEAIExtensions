@@ -17,6 +17,8 @@ void UAIExtStateTreeTaskActivateAbilityInstanceData::OnAbilityEnded( const FAbil
          ability_ended_data.bWasCancelled )
     {
         RunStatus = EStateTreeRunStatus::Failed;
+
+        return;
     }
 
     RunStatus = EStateTreeRunStatus::Succeeded;
