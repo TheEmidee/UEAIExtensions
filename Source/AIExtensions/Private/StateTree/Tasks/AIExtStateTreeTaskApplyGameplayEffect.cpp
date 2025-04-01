@@ -68,7 +68,7 @@ void FAIExtStateTreeTaskApplyGameplayEffect::ExitState( FStateTreeExecutionConte
 
     auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
 
-    if ( instance_data.bRemoveEffectWhenTaskExits )
+    if ( instance_data.bRemoveEffectWhenTaskExits && instance_data.UsedASC != nullptr )
     {
         instance_data.UsedASC->RemoveActiveGameplayEffect( instance_data.Handle );
         UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskApplyGameplayEffect removed gameplay effect." ) );
