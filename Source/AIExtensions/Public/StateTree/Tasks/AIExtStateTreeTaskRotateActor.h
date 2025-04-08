@@ -15,7 +15,7 @@ struct FAIExtStateTreeTaskRotateActorInstanceData
     UPROPERTY( EditAnywhere, Category = "Context" )
     TObjectPtr< AActor > ActorToRotate = nullptr;
 
-    UPROPERTY( EditAnywhere, Category = "Context" )
+    UPROPERTY( EditAnywhere, Category = "Parameter" )
     TObjectPtr< AActor > ActorToCopyRotationFrom = nullptr;
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
