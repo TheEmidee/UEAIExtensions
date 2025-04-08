@@ -29,7 +29,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskEnableComponentCollision : public FSt
 
     using FInstanceDataType = FAIExtStateTreeTaskEnableComponentCollisionInstanceData;
 
-    FAIExtStateTreeTaskEnableComponentCollision() = default;
+    FAIExtStateTreeTaskEnableComponentCollision();
 
     const UStruct * GetInstanceDataType() const override;
 

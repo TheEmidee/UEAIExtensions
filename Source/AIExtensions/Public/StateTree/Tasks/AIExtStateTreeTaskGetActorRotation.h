@@ -33,7 +33,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetActorRotation : public FStateTreeT
 
     using FInstanceDataType = FAIExtStateTreeTaskGetActorRotationInstanceData;
 
-    FAIExtStateTreeTaskGetActorRotation() = default;
+    FAIExtStateTreeTaskGetActorRotation();
 
     const UStruct * GetInstanceDataType() const override;
 

@@ -34,7 +34,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetAIController : public FStateTreeTa
 
     using FInstanceDataType = FAIExtStateTreeTaskGetAIControllerInstanceData;
 
-    FAIExtStateTreeTaskGetAIController() = default;
+    FAIExtStateTreeTaskGetAIController();
 
     const UStruct * GetInstanceDataType() const override;
 

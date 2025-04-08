@@ -29,7 +29,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskActorLookAtActor final : public FStat
 
     using FInstanceDataType = FAIExtStateTreeTaskActorLookAtActorInstanceData;
 
-    FAIExtStateTreeTaskActorLookAtActor() = default;
+    FAIExtStateTreeTaskActorLookAtActor();
 
     const UStruct * GetInstanceDataType() const override;
 

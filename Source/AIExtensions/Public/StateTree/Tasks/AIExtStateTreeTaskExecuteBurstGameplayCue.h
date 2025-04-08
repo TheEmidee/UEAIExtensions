@@ -33,7 +33,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskExecuteBurstGameplayCue final : publi
 
     using FInstanceDataType = FAIExtStateTreeTaskExecuteBurstGameplayCueInstanceData;
 
-    FAIExtStateTreeTaskExecuteBurstGameplayCue() = default;
+    FAIExtStateTreeTaskExecuteBurstGameplayCue();
 
     const UStruct * GetInstanceDataType() const override;
 

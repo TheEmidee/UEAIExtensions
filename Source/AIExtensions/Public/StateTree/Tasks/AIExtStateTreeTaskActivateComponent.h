@@ -37,7 +37,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskActivateComponent : public FStateTree
 
     using FInstanceDataType = FAIExtStateTreeTaskActivateComponentInstanceData;
 
-    FAIExtStateTreeTaskActivateComponent() = default;
+    FAIExtStateTreeTaskActivateComponent();
 
     const UStruct * GetInstanceDataType() const override;
 

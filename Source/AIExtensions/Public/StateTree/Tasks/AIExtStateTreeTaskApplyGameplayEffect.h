@@ -61,7 +61,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskApplyGameplayEffect : public FStateTr
 
     using FInstanceDataType = FAIExtStateTreeTaskApplyGameplayEffectInstanceData;
 
-    FAIExtStateTreeTaskApplyGameplayEffect() = default;
+    FAIExtStateTreeTaskApplyGameplayEffect();
 
     const UStruct * GetInstanceDataType() const override;
 
