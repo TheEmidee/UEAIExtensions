@@ -1,5 +1,6 @@
 #include "StateTree/Tasks/AIExtStateTreeTaskRotateActor.h"
 
+#include <Kismet/KismetMathLibrary.h>
 #include <StateTreeExecutionContext.h>
 
 EStateTreeRunStatus FAIExtStateTreeTaskRotateActor::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
@@ -8,19 +9,15 @@ EStateTreeRunStatus FAIExtStateTreeTaskRotateActor::EnterState( FStateTreeExecut
 
     auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
 
-    if ( instance_data.ActorToRotate == nullptr )
+    if ( instance_data.Actor == nullptr )
     {
-        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskApplyGameplayEffect can't apply gameplay effect because no ability system was bound." ) );
+        UE_VLOG( context.GetOwner(), LogStateTree, Error, TEXT( "FAIExtStateTreeTaskRotateActor can't rotate the actor because it's null." ) );
         return EStateTreeRunStatus::Failed;
     }
 
-    if ( instance_data.ActorToCopyRotationFrom != nullptr )
+    if ( !instance_data.bContinuousRotation )
     {
-        instance_data.TargetRotation = instance_data.ActorToCopyRotationFrom->GetActorRotation();
-    }
-    else
-    {
-        instance_data.TargetRotation = instance_data.WorldRotation;
+        UpdateTargetRotation( context );
     }
 
     return EStateTreeRunStatus::Running;
@@ -30,18 +27,67 @@ EStateTreeRunStatus FAIExtStateTreeTaskRotateActor::Tick( FStateTreeExecutionCon
 {
     auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
 
-    const auto current_rotation = instance_data.ActorToRotate->GetActorRotation();
+    const auto current_rotation = instance_data.Actor->GetActorRotation();
 
-    if ( current_rotation.Equals( instance_data.TargetRotation, 0.01f ) )
+    if ( instance_data.bContinuousRotation )
     {
-        if ( instance_data.bFinishTaskWhenRotationIsComplete )
-        {
-            return EStateTreeRunStatus::Succeeded;
-        }
+        UpdateTargetRotation( context );
     }
 
-    const auto rotation = FMath::RInterpConstantTo( current_rotation, instance_data.TargetRotation, delta_time, instance_data.RotationSpeed );
-    instance_data.ActorToRotate->SetActorRotation( rotation );
+    auto rotation = FMath::RInterpConstantTo( current_rotation, instance_data.TargetRotation, delta_time, instance_data.RotationSpeed );
+    auto rotation_matches = true;
+
+    if ( !instance_data.bUpdatePitch )
+    {
+        rotation.Pitch = current_rotation.Pitch;
+    }
+    else
+    {
+        rotation_matches &= FMath::IsNearlyEqual( rotation.Pitch, instance_data.TargetRotation.Pitch, 0.01f );
+    }
+
+    if ( !instance_data.bUpdateYaw )
+    {
+        rotation.Yaw = current_rotation.Yaw;
+    }
+    else
+    {
+        rotation_matches &= FMath::IsNearlyEqual( rotation.Yaw, instance_data.TargetRotation.Yaw, 0.01f );
+    }
+
+    if ( !instance_data.bUpdateRoll )
+    {
+        rotation.Roll = current_rotation.Roll;
+    }
+    else
+    {
+        rotation_matches &= FMath::IsNearlyEqual( rotation.Roll, instance_data.TargetRotation.Roll, 0.01f );
+    }
+
+    instance_data.Actor->SetActorRotation( rotation );
+
+    if ( rotation_matches && instance_data.bFinishTaskWhenRotationIsComplete )
+    {
+        return EStateTreeRunStatus::Succeeded;
+    }
 
     return EStateTreeRunStatus::Running;
+}
+
+void FAIExtStateTreeTaskRotateActor::UpdateTargetRotation( const FStateTreeExecutionContext & context ) const
+{
+    auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
+
+    if ( instance_data.ActorToCopyRotationFrom != nullptr )
+    {
+        instance_data.TargetRotation = instance_data.ActorToCopyRotationFrom->GetActorRotation();
+    }
+    else if ( instance_data.ActorToLookAtTo != nullptr )
+    {
+        instance_data.TargetRotation = UKismetMathLibrary::FindLookAtRotation( instance_data.Actor->GetActorLocation(), instance_data.ActorToLookAtTo->GetActorLocation() );
+    }
+    else
+    {
+        instance_data.TargetRotation = instance_data.WorldRotation;
+    }
 }

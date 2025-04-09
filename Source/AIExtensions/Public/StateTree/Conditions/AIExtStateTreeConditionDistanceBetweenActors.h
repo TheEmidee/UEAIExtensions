@@ -18,7 +18,7 @@ struct FAIExtStateTreeConditionDistanceBetweenActorsInstanceData
     UPROPERTY( EditAnywhere, Category = "Context" )
     TObjectPtr< AActor > SecondActor = nullptr;
 
-    UPROPERTY( EditAnywhere, Category = "Input" )
+    UPROPERTY( EditAnywhere, Category = "Parameter" )
     float Distance = 0.0f;
 };
 
