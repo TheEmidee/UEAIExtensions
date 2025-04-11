@@ -5,11 +5,8 @@
 
 FAIExtStateTreeTaskGetActorOwnedTags::FAIExtStateTreeTaskGetActorOwnedTags()
 {
-    // No tick needed.
     bShouldCallTick = true;
-    // No need to update bound properties after enter state.
     bShouldCopyBoundPropertiesOnTick = true;
-    bShouldCopyBoundPropertiesOnExitState = true;
 }
 
 EStateTreeRunStatus FAIExtStateTreeTaskGetActorOwnedTags::Tick( FStateTreeExecutionContext & context, const float delta_time ) const
