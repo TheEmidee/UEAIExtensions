@@ -1,8 +1,7 @@
 #include "StateTree/Tasks/AIExtStateTreeTaskSendGameplayEvent.h"
 
-#include "AbilitySystemBlueprintLibrary.h"
-#include "AbilitySystemComponent.h"
-#include "AbilitySystemInterface.h"
+#include <AbilitySystemBlueprintLibrary.h>
+#include <AbilitySystemComponent.h>
 
 #include <StateTreeExecutionContext.h>
 
