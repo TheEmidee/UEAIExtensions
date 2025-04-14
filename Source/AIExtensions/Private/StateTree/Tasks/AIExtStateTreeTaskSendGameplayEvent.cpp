@@ -1,6 +1,7 @@
 #include "StateTree/Tasks/AIExtStateTreeTaskSendGameplayEvent.h"
 
-#include "AbilitySystemComponent.h"
+#include <AbilitySystemBlueprintLibrary.h>
+#include <AbilitySystemComponent.h>
 
 #include <StateTreeExecutionContext.h>
 
@@ -23,7 +24,7 @@ EStateTreeRunStatus FAIExtStateTreeTaskSendGameplayEvent::EnterState( FStateTree
 
     if ( asc == nullptr )
     {
-        asc = instance_data.Target ? instance_data.Target->FindComponentByClass< UAbilitySystemComponent >() : nullptr;
+        asc = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent( instance_data.Target );
     }
 
     if ( asc == nullptr )
