@@ -40,7 +40,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskStopMontage : public FStateTreeTaskCo
 
     using FInstanceDataType = FAIExtStateTreeTaskStopMontageInstanceData;
 
-    FAIExtStateTreeTaskStopMontage() = default;
+    FAIExtStateTreeTaskStopMontage();
 
     const UStruct * GetInstanceDataType() const override;
 

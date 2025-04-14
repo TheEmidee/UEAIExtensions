@@ -5,6 +5,15 @@
 #include <StateTreeLinker.h>
 #include <VisualLogger/VisualLogger.h>
 
+FAIExtStateTreeTaskSmartObjectSetSlotEnabled::FAIExtStateTreeTaskSmartObjectSetSlotEnabled()
+{
+    // No tick needed.
+    bShouldCallTick = false;
+    // No need to update bound properties after enter state.
+    bShouldCopyBoundPropertiesOnTick = false;
+    bShouldCopyBoundPropertiesOnExitState = false;
+}
+
 bool FAIExtStateTreeTaskSmartObjectSetSlotEnabled::Link( FStateTreeLinker & linker )
 {
     linker.LinkExternalData( SmartObjectSubsystemHandle );

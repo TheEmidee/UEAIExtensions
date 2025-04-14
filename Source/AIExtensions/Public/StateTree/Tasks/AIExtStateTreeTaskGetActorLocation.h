@@ -33,7 +33,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetActorLocation : public FStateTreeT
 
     using FInstanceDataType = FAIExtStateTreeTaskGetActorLocationInstanceData;
 
-    FAIExtStateTreeTaskGetActorLocation() = default;
+    FAIExtStateTreeTaskGetActorLocation();
 
     const UStruct * GetInstanceDataType() const override;
 

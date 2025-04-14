@@ -33,7 +33,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetActorOwnedTags : public FStateTree
 
     using FInstanceDataType = FAIExtStateTreeTaskGetActorOwnedTagsInstanceData;
 
-    FAIExtStateTreeTaskGetActorOwnedTags() = default;
+    FAIExtStateTreeTaskGetActorOwnedTags();
 
     const UStruct * GetInstanceDataType() const override;
 

@@ -2,6 +2,15 @@
 
 #include <StateTreeExecutionContext.h>
 
+FAIExtStateTreeTaskShowActor::FAIExtStateTreeTaskShowActor()
+{
+    // No tick needed.
+    bShouldCallTick = false;
+    // No need to update bound properties after enter state.
+    bShouldCopyBoundPropertiesOnTick = false;
+    bShouldCopyBoundPropertiesOnExitState = false;
+}
+
 EStateTreeRunStatus FAIExtStateTreeTaskShowActor::EnterState( FStateTreeExecutionContext & context, const FStateTreeTransitionResult & transition ) const
 {
     TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );

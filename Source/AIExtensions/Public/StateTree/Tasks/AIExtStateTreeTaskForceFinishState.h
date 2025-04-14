@@ -29,7 +29,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskForceFinish : public FStateTreeTaskCo
 
     using FInstanceDataType = FAIExtStateTreeTaskForceFinishInstanceData;
 
-    FAIExtStateTreeTaskForceFinish() = default;
+    FAIExtStateTreeTaskForceFinish();
 
     const UStruct * GetInstanceDataType() const override;
 

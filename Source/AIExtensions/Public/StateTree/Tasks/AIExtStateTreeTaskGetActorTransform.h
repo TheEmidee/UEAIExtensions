@@ -33,7 +33,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetActorTransform : public FStateTree
 
     using FInstanceDataType = FAIExtStateTreeTaskGetActorTransformInstanceData;
 
-    FAIExtStateTreeTaskGetActorTransform() = default;
+    FAIExtStateTreeTaskGetActorTransform();
 
     const UStruct * GetInstanceDataType() const override;
 

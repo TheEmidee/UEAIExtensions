@@ -35,7 +35,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskGetStateTreeComponent : public FState
 
     using FInstanceDataType = FAIExtStateTreeTaskGetStateTreeComponentInstanceData;
 
-    FAIExtStateTreeTaskGetStateTreeComponent() = default;
+    FAIExtStateTreeTaskGetStateTreeComponent();
 
     const UStruct * GetInstanceDataType() const override;
 

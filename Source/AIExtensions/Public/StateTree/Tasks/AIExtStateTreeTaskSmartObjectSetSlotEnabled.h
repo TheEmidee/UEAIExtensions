@@ -33,7 +33,7 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskSmartObjectSetSlotEnabled : public FS
 
     using FInstanceDataType = FAIExtStateTreeTaskSmartObjectSetSlotEnabledInstanceData;
 
-    FAIExtStateTreeTaskSmartObjectSetSlotEnabled() = default;
+    FAIExtStateTreeTaskSmartObjectSetSlotEnabled();
 
     const UStruct * GetInstanceDataType() const override;
     bool Link( FStateTreeLinker & linker ) override;
