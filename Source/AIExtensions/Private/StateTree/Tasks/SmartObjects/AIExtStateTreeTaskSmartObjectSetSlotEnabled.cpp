@@ -1,4 +1,4 @@
-﻿#include "StateTree/Tasks/AIExtStateTreeTaskSmartObjectSetSlotEnabled.h"
+﻿#include "StateTree/Tasks/SmartObjects/AIExtStateTreeTaskSmartObjectSetSlotEnabled.h"
 
 #include <SmartObjectSubsystem.h>
 #include <StateTreeExecutionContext.h>
