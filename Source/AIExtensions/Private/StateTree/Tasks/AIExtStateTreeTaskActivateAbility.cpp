@@ -8,6 +8,11 @@
 
 void UAIExtStateTreeTaskActivateAbilityInstanceData::OnAbilityEnded( const FAbilityEndedData & ability_ended_data )
 {
+    if ( ability_ended_data.AbilitySpecHandle != AbilitySpecHandle )
+    {
+        return;
+    }
+
     if ( !bEndTaskWhenAbilityEnds )
     {
         return;
@@ -52,12 +57,24 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
         return EStateTreeRunStatus::Failed;
     }
 
-    for ( const auto & ability_spec : instance_data.AbilitySystemComponent->GetActivatableAbilities() )
+    if ( instance_data.bGiveAbility )
     {
-        if ( ability_spec.Ability->GetClass() == instance_data.AbilityClass )
+        instance_data.AbilitySpecHandle = instance_data.AbilitySystemComponent->K2_GiveAbility( instance_data.AbilityClass );
+
+        if ( instance_data.bRemoveAbility )
         {
-            instance_data.AbilitySpecHandle = ability_spec.Handle;
-            break;
+            instance_data.AbilitySystemComponent->SetRemoveAbilityOnEnd( instance_data.AbilitySpecHandle );
+        }
+    }
+    else
+    {
+        for ( const auto & ability_spec : instance_data.AbilitySystemComponent->GetActivatableAbilities() )
+        {
+            if ( ability_spec.Ability->GetClass() == instance_data.AbilityClass )
+            {
+                instance_data.AbilitySpecHandle = ability_spec.Handle;
+                break;
+            }
         }
     }
 
