@@ -7,6 +7,7 @@
 #include "AIExtStateTreeTaskSmartObjectFreeSlot.generated.h"
 
 struct FStateTreeTransitionResult;
+class USmartObjectSubsystem;
 
 USTRUCT()
 struct AIEXTENSIONS_API FAIExtStateTreeTaskSmartObjectFreeSlotInstanceData
