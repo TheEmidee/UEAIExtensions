@@ -42,6 +42,19 @@ public:
     UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bGiveAbility" ) )
     bool bRemoveAbility = true;
 
+    /** Set to true to activate the ability through a gameplay event */
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional ) )
+    bool bSendGameplayEvent = false;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bSendGameplayEvent" ) )
+    FGameplayTag EventTag;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bSendGameplayEvent" ) )
+    TObjectPtr< AActor > PayloadInstigator = nullptr;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bSendGameplayEvent" ) )
+    TObjectPtr< AActor > PayloadTarget = nullptr;
+
     /** Set to true to end the task when the ability ends (successfully or cancelled */
     UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional ) )
     bool bEndTaskWhenAbilityEnds = false;

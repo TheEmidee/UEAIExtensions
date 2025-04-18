@@ -60,11 +60,6 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
     if ( instance_data.bGiveAbility )
     {
         instance_data.AbilitySpecHandle = instance_data.AbilitySystemComponent->K2_GiveAbility( instance_data.AbilityClass );
-
-        if ( instance_data.bRemoveAbility )
-        {
-            instance_data.AbilitySystemComponent->SetRemoveAbilityOnEnd( instance_data.AbilitySpecHandle );
-        }
     }
     else
     {
@@ -86,7 +81,27 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
 
     instance_data.AbilitySystemComponent->OnAbilityEnded.AddUObject( &instance_data, &UAIExtStateTreeTaskActivateAbilityInstanceData::OnAbilityEnded );
 
-    const auto could_activate_ability = instance_data.AbilitySystemComponent->TryActivateAbility( instance_data.AbilitySpecHandle );
+    bool could_activate_ability = false;
+
+    if ( instance_data.bSendGameplayEvent )
+    {
+        FGameplayEventData payload;
+        payload.EventTag = instance_data.EventTag;
+        payload.Instigator = instance_data.PayloadInstigator;
+        payload.Target = instance_data.PayloadTarget;
+
+        could_activate_ability = instance_data.AbilitySystemComponent->TriggerAbilityFromGameplayEvent(
+            instance_data.AbilitySpecHandle,
+            nullptr,
+            FGameplayTag::EmptyTag,
+            &payload,
+            *instance_data.AbilitySystemComponent );
+    }
+    else
+    {
+        instance_data.AbilitySystemComponent->TryActivateAbility( instance_data.AbilitySpecHandle );
+    }
+    
 
     if ( !could_activate_ability && instance_data.bEndTaskWhenAbilityEnds )
     {
@@ -126,5 +141,10 @@ void FAIExtStateTreeTaskActivateAbility::ExitState( FStateTreeExecutionContext &
         instance_data.AbilitySystemComponent->CancelAbilityHandle( instance_data.AbilitySpecHandle );
 
         UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskActivateAbility cancelled gameplay ability." ) );
+    }
+
+    if ( instance_data.bRemoveAbility )
+    {
+        instance_data.AbilitySystemComponent->SetRemoveAbilityOnEnd( instance_data.AbilitySpecHandle );
     }
 }
