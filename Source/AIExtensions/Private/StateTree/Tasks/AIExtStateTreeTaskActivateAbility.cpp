@@ -8,6 +8,11 @@
 
 void UAIExtStateTreeTaskActivateAbilityInstanceData::OnAbilityEnded( const FAbilityEndedData & ability_ended_data )
 {
+    if ( ability_ended_data.AbilitySpecHandle != AbilitySpecHandle )
+    {
+        return;
+    }
+
     if ( !bEndTaskWhenAbilityEnds )
     {
         return;
@@ -52,12 +57,19 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
         return EStateTreeRunStatus::Failed;
     }
 
-    for ( const auto & ability_spec : instance_data.AbilitySystemComponent->GetActivatableAbilities() )
+    if ( instance_data.bGiveAbility )
     {
-        if ( ability_spec.Ability->GetClass() == instance_data.AbilityClass )
+        instance_data.AbilitySpecHandle = instance_data.AbilitySystemComponent->K2_GiveAbility( instance_data.AbilityClass );
+    }
+    else
+    {
+        for ( const auto & ability_spec : instance_data.AbilitySystemComponent->GetActivatableAbilities() )
         {
-            instance_data.AbilitySpecHandle = ability_spec.Handle;
-            break;
+            if ( ability_spec.Ability->GetClass() == instance_data.AbilityClass )
+            {
+                instance_data.AbilitySpecHandle = ability_spec.Handle;
+                break;
+            }
         }
     }
 
@@ -69,7 +81,27 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
 
     instance_data.AbilitySystemComponent->OnAbilityEnded.AddUObject( &instance_data, &UAIExtStateTreeTaskActivateAbilityInstanceData::OnAbilityEnded );
 
-    const auto could_activate_ability = instance_data.AbilitySystemComponent->TryActivateAbility( instance_data.AbilitySpecHandle );
+    bool could_activate_ability = false;
+
+    if ( instance_data.bSendGameplayEvent )
+    {
+        FGameplayEventData payload;
+        payload.EventTag = instance_data.EventTag;
+        payload.Instigator = instance_data.PayloadInstigator;
+        payload.Target = instance_data.PayloadTarget;
+
+        could_activate_ability = instance_data.AbilitySystemComponent->TriggerAbilityFromGameplayEvent(
+            instance_data.AbilitySpecHandle,
+            nullptr,
+            FGameplayTag::EmptyTag,
+            &payload,
+            *instance_data.AbilitySystemComponent );
+    }
+    else
+    {
+        instance_data.AbilitySystemComponent->TryActivateAbility( instance_data.AbilitySpecHandle );
+    }
+    
 
     if ( !could_activate_ability && instance_data.bEndTaskWhenAbilityEnds )
     {
@@ -109,5 +141,10 @@ void FAIExtStateTreeTaskActivateAbility::ExitState( FStateTreeExecutionContext &
         instance_data.AbilitySystemComponent->CancelAbilityHandle( instance_data.AbilitySpecHandle );
 
         UE_VLOG( context.GetOwner(), LogStateTree, Log, TEXT( "FAIExtStateTreeTaskActivateAbility cancelled gameplay ability." ) );
+    }
+
+    if ( instance_data.bRemoveAbility )
+    {
+        instance_data.AbilitySystemComponent->SetRemoveAbilityOnEnd( instance_data.AbilitySpecHandle );
     }
 }
