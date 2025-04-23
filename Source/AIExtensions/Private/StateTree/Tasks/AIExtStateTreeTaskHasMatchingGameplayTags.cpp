@@ -14,20 +14,26 @@ EStateTreeRunStatus FAIExtStateTreeTaskHasMatchingGameplayTags::Tick( FStateTree
 
     auto & instance_data = context.GetInstanceData( *this );
 
-    bool bResult = false;
+    auto result = false;
     switch ( MatchType )
     {
         case EGameplayContainerMatchType::Any:
-            bResult = bExactMatch ? instance_data.TagContainer.HasAnyExact( instance_data.OtherTagContainer ) : instance_data.TagContainer.HasAny( instance_data.OtherTagContainer );
+        {
+            result = bExactMatch ? instance_data.TagContainer.HasAnyExact( instance_data.OtherTagContainer ) : instance_data.TagContainer.HasAny( instance_data.OtherTagContainer );
             break;
+        }
         case EGameplayContainerMatchType::All:
-            bResult = bExactMatch ? instance_data.TagContainer.HasAllExact( instance_data.OtherTagContainer ) : instance_data.TagContainer.HasAll( instance_data.OtherTagContainer );
+        {
+            result = bExactMatch ? instance_data.TagContainer.HasAllExact( instance_data.OtherTagContainer ) : instance_data.TagContainer.HasAll( instance_data.OtherTagContainer );
             break;
+        }
         default:
-            ensureMsgf( false, TEXT( "Unhandled match type %s." ), *UEnum::GetValueAsString( MatchType ) );
+        {
+            checkNoEntry();
+        }
     }
 
-    instance_data.bHasTag = bResult ^ bInvert;
+    instance_data.bHasTag = result ^ bInvert;
 
     return EStateTreeRunStatus::Running;
 }
