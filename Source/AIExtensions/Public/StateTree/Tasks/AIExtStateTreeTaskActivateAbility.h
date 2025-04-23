@@ -6,6 +6,7 @@
 
 #include "AIExtStateTreeTaskActivateAbility.generated.h"
 
+struct FAbilityEndedData;
 class UGameplayAbility;
 class UAbilitySystemComponent;
 enum class EStateTreeRunStatus : uint8;
@@ -22,16 +23,37 @@ public:
     void OnAbilityEnded( const FAbilityEndedData & ability_ended_data );
 
     /** The ability system component on which to activate the ability. */
-    UPROPERTY( EditAnywhere, Category = "Context" )
+    UPROPERTY( EditAnywhere, Category = "Parameter" )
     TObjectPtr< UAbilitySystemComponent > AbilitySystemComponent = nullptr;
 
     /** The actor on which to activate the ability. This is used if nothing is bound to the AbilitySystemComponent property. */
-    UPROPERTY( EditAnywhere, Category = "Context" )
+    UPROPERTY( EditAnywhere, Category = "Parameter" )
     TObjectPtr< AActor > Actor = nullptr;
 
     /** The ability class to activate */
     UPROPERTY( EditAnywhere, Category = "Parameter" )
     TSubclassOf< UGameplayAbility > AbilityClass = nullptr;
+
+    /** Set to true to give the ability before activating it */
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional ) )
+    bool bGiveAbility = false;
+
+    /** Set to true to remove the ability after it has finished to execute */
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bGiveAbility" ) )
+    bool bRemoveAbility = true;
+
+    /** Set to true to activate the ability through a gameplay event */
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional ) )
+    bool bSendGameplayEvent = false;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bSendGameplayEvent" ) )
+    FGameplayTag EventTag;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bSendGameplayEvent" ) )
+    TObjectPtr< AActor > PayloadInstigator = nullptr;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional, EditCondition = "bSendGameplayEvent" ) )
+    TObjectPtr< AActor > PayloadTarget = nullptr;
 
     /** Set to true to end the task when the ability ends (successfully or cancelled */
     UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( Optional ) )
