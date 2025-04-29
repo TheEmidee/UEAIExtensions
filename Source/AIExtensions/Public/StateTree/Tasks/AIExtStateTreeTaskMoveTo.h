@@ -5,6 +5,7 @@
 
 #include "AIExtStateTreeTaskMoveTo.generated.h"
 
+class UNavigationQueryFilter;
 class AActor;
 class AAIController;
 class IGameplayTaskOwnerInterface;

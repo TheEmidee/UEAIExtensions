@@ -6,6 +6,7 @@
 #include "AIExtStateTreeTaskSmartObjectGetSlotLocationAndRotation.generated.h"
 
 struct FStateTreeTransitionResult;
+class USmartObjectSubsystem;
 
 USTRUCT()
 struct AIEXTENSIONS_API FAIExtStateTreeTaskSmartObjectGetSlotLocationAndRotationInstanceData

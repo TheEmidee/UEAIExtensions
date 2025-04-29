@@ -25,7 +25,7 @@ inline EStateTreeRunStatus FAIExtStateTreeTaskSmartObjectGetSlotLocationAndRotat
     TRACE_CPUPROFILER_EVENT_SCOPE_STR( __FUNCTION__ );
 
     auto & smart_object_subsystem = context.GetExternalData( SmartObjectSubsystemHandle );
-    auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
+    auto & instance_data = context.GetInstanceData( *this );
 
     if ( !instance_data.SlotHandle.IsValid() )
     {
