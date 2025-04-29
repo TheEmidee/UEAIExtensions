@@ -99,9 +99,8 @@ EStateTreeRunStatus FAIExtStateTreeTaskActivateAbility::EnterState( FStateTreeEx
     }
     else
     {
-        instance_data.AbilitySystemComponent->TryActivateAbility( instance_data.AbilitySpecHandle );
+        could_activate_ability = instance_data.AbilitySystemComponent->TryActivateAbility( instance_data.AbilitySpecHandle );
     }
-    
 
     if ( !could_activate_ability && instance_data.bEndTaskWhenAbilityEnds )
     {
