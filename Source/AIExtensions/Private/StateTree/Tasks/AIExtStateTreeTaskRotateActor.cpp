@@ -27,6 +27,16 @@ EStateTreeRunStatus FAIExtStateTreeTaskRotateActor::Tick( FStateTreeExecutionCon
 {
     auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
 
+    if ( instance_data.bRotateInstantly )
+    {
+        instance_data.Actor->SetActorRotation( instance_data.TargetRotation );
+
+        if ( instance_data.bFinishTaskWhenRotationIsComplete )
+        {
+            return EStateTreeRunStatus::Succeeded;
+        }
+    }
+
     const auto current_rotation = instance_data.Actor->GetActorRotation();
 
     if ( instance_data.bContinuousRotation )

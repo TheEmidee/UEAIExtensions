@@ -25,6 +25,9 @@ struct FAIExtStateTreeTaskRotateActorInstanceData
     FRotator WorldRotation;
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
+    bool bRotateInstantly = false;
+
+    UPROPERTY( EditAnywhere, Category = "Parameter", meta = ( EditCondition = "!bRotateInstantly" ) )
     float RotationSpeed = 1.0f;
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
