@@ -27,21 +27,28 @@ EStateTreeRunStatus FAIExtStateTreeTaskRotateActor::Tick( FStateTreeExecutionCon
 {
     auto & instance_data = context.GetInstanceData< FInstanceDataType >( *this );
 
-    if ( instance_data.bRotateInstantly )
-    {
-        instance_data.Actor->SetActorRotation( instance_data.TargetRotation );
-
-        if ( instance_data.bFinishTaskWhenRotationIsComplete )
-        {
-            return EStateTreeRunStatus::Succeeded;
-        }
-    }
-
     const auto current_rotation = instance_data.Actor->GetActorRotation();
 
     if ( instance_data.bContinuousRotation )
     {
         UpdateTargetRotation( context );
+    }
+
+    if ( instance_data.bRotateInstantly )
+    {
+        const auto new_rotation = FRotator(
+            instance_data.bUpdatePitch ? instance_data.TargetRotation.Pitch : current_rotation.Pitch,
+            instance_data.bUpdateYaw ? instance_data.TargetRotation.Yaw : current_rotation.Yaw,
+            instance_data.bUpdateRoll ? instance_data.TargetRotation.Roll : current_rotation.Roll );
+
+        instance_data.Actor->SetActorRotation( new_rotation );
+
+        if ( instance_data.bFinishTaskWhenRotationIsComplete )
+        {
+            return EStateTreeRunStatus::Succeeded;
+        }
+
+        return EStateTreeRunStatus::Running;
     }
 
     auto rotation = FMath::RInterpConstantTo( current_rotation, instance_data.TargetRotation, delta_time, instance_data.RotationSpeed );
