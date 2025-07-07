@@ -21,15 +21,15 @@ struct AIEXTENSIONS_API FAIExtStateTreeTaskSmartObjectGetSlotLocationAndRotation
 
     /** The slot location */
     UPROPERTY( EditAnywhere, Category = "Output" )
-    FVector SlotLocation;
+    FVector SlotLocation = FVector::ZeroVector;
 
     /** The slot location */
     UPROPERTY( EditAnywhere, Category = "Output" )
-    FRotator SlotRotation;
+    FRotator SlotRotation = FRotator::ZeroRotator;
 
     /** The slot location as a quaternion */
     UPROPERTY( EditAnywhere, Category = "Output" )
-    FQuat SlotRotationQuat;
+    FQuat SlotRotationQuat = FQuat::Identity;
 };
 
 /**

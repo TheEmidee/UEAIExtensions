@@ -13,7 +13,7 @@ struct FAIExtStateTreeConditionCanReachLocationInstanceData
     GENERATED_BODY()
 
     UPROPERTY( EditAnywhere, Category = "Input" )
-    FVector Location;
+    FVector Location = FVector::ZeroVector;
 };
 
 /**

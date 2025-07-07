@@ -22,7 +22,7 @@ struct FAIExtStateTreeTaskRotateActorInstanceData
     TObjectPtr< AActor > ActorToLookAtTo = nullptr;
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
-    FRotator WorldRotation;
+    FRotator WorldRotation = FRotator::ZeroRotator;
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
     bool bRotateInstantly = false;
@@ -46,7 +46,7 @@ struct FAIExtStateTreeTaskRotateActorInstanceData
     UPROPERTY( EditAnywhere, Category = "Parameter" )
     bool bContinuousRotation = false;
 
-    FRotator TargetRotation;
+    FRotator TargetRotation = FRotator::ZeroRotator;
 };
 
 /**
