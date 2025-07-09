@@ -6,6 +6,7 @@
 
 #include "AIExtStateTreeTaskApplyGameplayEffect.generated.h"
 
+class UGameplayEffect;
 class UAbilitySystemComponent;
 enum class EStateTreeRunStatus : uint8;
 struct FStateTreeTransitionResult;
