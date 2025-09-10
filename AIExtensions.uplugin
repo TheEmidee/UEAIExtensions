@@ -38,6 +38,10 @@
     {
       "Name": "GameplayStateTree",
       "Enabled": true
+    },
+    {
+      "Name": "ModularGameplayActors",
+      "Enabled": true
     }
   ]
 }
