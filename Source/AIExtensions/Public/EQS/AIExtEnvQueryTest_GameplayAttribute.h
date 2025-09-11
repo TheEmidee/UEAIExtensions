@@ -1,8 +1,8 @@
 #pragma once
 
-#include <AttributeSet.h>
-#include <CoreMinimal.h>
-#include <EnvironmentQuery/EnvQueryTest.h>
+#include "AttributeSet.h"
+#include "CoreMinimal.h"
+#include "EnvironmentQuery/EnvQueryTest.h"
 
 #include "AIExtEnvQueryTest_GameplayAttribute.generated.h"
 

@@ -1,5 +1,5 @@
 #include "Abilities/Tasks/AIExtWaitBehaviorTreeNotRunningAbilityTask.h"
-#include <BehaviorTree/BehaviorTreeComponent.h>
+#include "BehaviorTree/BehaviorTreeComponent.h"
 
 UAIExtWaitBehaviorTreeNotRunningAbilityTask::UAIExtWaitBehaviorTreeNotRunningAbilityTask()
 {

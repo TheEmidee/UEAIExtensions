@@ -1,7 +1,7 @@
 ﻿#include "StateTree/Tasks/AIExtStateTreeTaskGetActorLocation.h"
 
-#include <GameFramework/Actor.h>
-#include <StateTreeExecutionContext.h>
+#include "GameFramework/Actor.h"
+#include "StateTreeExecutionContext.h"
 
 FAIExtStateTreeTaskGetActorLocation::FAIExtStateTreeTaskGetActorLocation()
 {

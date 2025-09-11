@@ -1,7 +1,7 @@
 #pragma once
 
-#include <BehaviorTree/Tasks/BTTask_Wait.h>
-#include <CoreMinimal.h>
+#include "BehaviorTree/Tasks/BTTask_Wait.h"
+#include "CoreMinimal.h"
 
 #include "AIExtBTTask_WaitBlackboardTimeWithDeviation.generated.h"
 

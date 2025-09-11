@@ -1,7 +1,7 @@
 ﻿#include "StateTree/Tasks/AIExtStateTreeTaskGetAIController.h"
 
-#include <GameFramework/Pawn.h>
-#include <StateTreeExecutionContext.h>
+#include "GameFramework/Pawn.h"
+#include "StateTreeExecutionContext.h"
 
 FAIExtStateTreeTaskGetAIController::FAIExtStateTreeTaskGetAIController()
 {

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <CoreMinimal.h>
-#include <DataProviders/AIDataProvider.h>
-#include <EnvironmentQuery/Generators/EnvQueryGenerator_ProjectedPoints.h>
+#include "CoreMinimal.h"
+#include "DataProviders/AIDataProvider.h"
+#include "EnvironmentQuery/Generators/EnvQueryGenerator_ProjectedPoints.h"
 
 #include "AIExtEnvQueryGenerator_Cone.generated.h"
 

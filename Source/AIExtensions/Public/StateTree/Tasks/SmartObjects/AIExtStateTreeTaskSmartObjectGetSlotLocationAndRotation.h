@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include <SmartObjectTypes.h>
-#include <StateTreeTaskBase.h>
+#include "SmartObjectTypes.h"
+#include "StateTreeTaskBase.h"
 
 #include "AIExtStateTreeTaskSmartObjectGetSlotLocationAndRotation.generated.h"
 

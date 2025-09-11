@@ -1,8 +1,8 @@
 #pragma once
 
-#include <CoreMinimal.h>
-#include <Kismet/BlueprintAsyncActionBase.h>
-#include <Tickable.h>
+#include "CoreMinimal.h"
+#include "Kismet/BlueprintAsyncActionBase.h"
+#include "Tickable.h"
 
 #include "AIExtAsyncTaskWaitBTStopped.generated.h"
 

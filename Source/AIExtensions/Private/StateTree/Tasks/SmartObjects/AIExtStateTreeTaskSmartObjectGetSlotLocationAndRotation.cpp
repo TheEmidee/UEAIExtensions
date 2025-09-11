@@ -1,9 +1,9 @@
 ﻿#include "StateTree/Tasks/SmartObjects/AIExtStateTreeTaskSmartObjectGetSlotLocationAndRotation.h"
 
-#include <SmartObjectSubsystem.h>
-#include <StateTreeExecutionContext.h>
-#include <StateTreeLinker.h>
-#include <VisualLogger/VisualLogger.h>
+#include "SmartObjectSubsystem.h"
+#include "StateTreeExecutionContext.h"
+#include "StateTreeLinker.h"
+#include "VisualLogger/VisualLogger.h"
 
 FAIExtStateTreeTaskSmartObjectGetSlotLocationAndRotation::FAIExtStateTreeTaskSmartObjectGetSlotLocationAndRotation()
 {

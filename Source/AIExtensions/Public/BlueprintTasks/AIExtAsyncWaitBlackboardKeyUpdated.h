@@ -2,8 +2,8 @@
 
 #include "BehaviorTree/BehaviorTreeTypes.h"
 
-#include <CoreMinimal.h>
-#include <Kismet/BlueprintAsyncActionBase.h>
+#include "CoreMinimal.h"
+#include "Kismet/BlueprintAsyncActionBase.h"
 
 #include "AIExtAsyncWaitBlackboardKeyUpdated.generated.h"
 

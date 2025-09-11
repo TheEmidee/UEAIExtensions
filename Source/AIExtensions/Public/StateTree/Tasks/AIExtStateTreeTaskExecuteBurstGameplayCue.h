@@ -1,8 +1,8 @@
 #pragma once
 
-#include <CoreMinimal.h>
-#include <GameplayCueInterface.h>
-#include <StateTreeTaskBase.h>
+#include "CoreMinimal.h"
+#include "GameplayCueInterface.h"
+#include "StateTreeTaskBase.h"
 
 #include "AIExtStateTreeTaskExecuteBUrstGameplayCue.generated.h"
 

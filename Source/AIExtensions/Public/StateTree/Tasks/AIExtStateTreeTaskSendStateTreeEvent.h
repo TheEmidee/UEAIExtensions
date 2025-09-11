@@ -1,7 +1,7 @@
 #pragma once
 
-#include <CoreMinimal.h>
-#include <StateTreeTaskBase.h>
+#include "CoreMinimal.h"
+#include "StateTreeTaskBase.h"
 
 #include "AIExtStateTreeTaskSendStateTreeEvent.generated.h"
 

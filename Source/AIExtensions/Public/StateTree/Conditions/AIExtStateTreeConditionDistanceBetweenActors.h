@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "AITypes.h"
-#include <StateTreeConditionBase.h>
+#include "StateTreeConditionBase.h"
 
 #include "AIExtStateTreeConditionDistanceBetweenActors.generated.h"
 

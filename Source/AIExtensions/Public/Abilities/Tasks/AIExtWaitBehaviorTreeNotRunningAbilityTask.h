@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Abilities/Tasks/AbilityTask.h>
-#include <CoreMinimal.h>
+#include "Abilities/Tasks/AbilityTask.h"
+#include "CoreMinimal.h"
 
 #include "AIExtWaitBehaviorTreeNotRunningAbilityTask.generated.h"
 

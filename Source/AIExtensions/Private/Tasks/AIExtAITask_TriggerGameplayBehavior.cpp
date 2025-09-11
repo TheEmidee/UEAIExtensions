@@ -2,10 +2,10 @@
 
 #include "GameplayBehaviors/AIExtGameplayBehaviorDataAsset.h"
 
-#include <AIController.h>
-#include <GameplayBehavior.h>
-#include <GameplayBehaviorConfig.h>
-#include <GameplayBehaviorSubsystem.h>
+#include "AIController.h"
+#include "GameplayBehavior.h"
+#include "GameplayBehaviorConfig.h"
+#include "GameplayBehaviorSubsystem.h"
 
 UAIExtAITask_TriggerGameplayBehavior::UAIExtAITask_TriggerGameplayBehavior( const FObjectInitializer & object_initializer ) :
     Super( object_initializer )

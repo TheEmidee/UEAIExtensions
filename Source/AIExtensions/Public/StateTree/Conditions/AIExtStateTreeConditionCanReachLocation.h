@@ -1,7 +1,7 @@
 #pragma once
 
-#include <CoreMinimal.h>
-#include <StateTreeConditionBase.h>
+#include "CoreMinimal.h"
+#include "StateTreeConditionBase.h"
 
 #include "AIExtStateTreeConditionCanReachLocation.generated.h"
 

@@ -1,9 +1,9 @@
 #include "Tasks/AIExtAITask_ActivateAbility.h"
 
-#include <AIController.h>
-#include <AbilitySystemBlueprintLibrary.h>
-#include <AbilitySystemComponent.h>
-#include <GameFramework/PlayerState.h>
+#include "AIController.h"
+#include "AbilitySystemBlueprintLibrary.h"
+#include "AbilitySystemComponent.h"
+#include "GameFramework/PlayerState.h"
 
 UAIExtAITask_ActivateAbility::UAIExtAITask_ActivateAbility( const FObjectInitializer & object_initializer ) :
     Super( object_initializer ),
@@ -45,7 +45,7 @@ void UAIExtAITask_ActivateAbility::Setup( AAIController & ai_controller, UAbilit
 
 void UAIExtAITask_ActivateAbility::Setup( AAIController & ai_controller, UAbilitySystemComponent & asc, bool end_when_ability_ends, FGameplayTag gameplay_tag )
 {
-    OwnerController = ai_controller;
+    OwnerController = &ai_controller;
     ASC = &asc;
     bEndsWhenAbilityEnds = end_when_ability_ends;
     AbilityTag = gameplay_tag;

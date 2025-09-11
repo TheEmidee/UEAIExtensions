@@ -1,7 +1,7 @@
 ﻿#include "StateTree/Tasks/AIExtStateTreeTaskGetActorOwnedTags.h"
 
-#include <GameplayTagAssetInterface.h>
-#include <StateTreeExecutionContext.h>
+#include "GameplayTagAssetInterface.h"
+#include "StateTreeExecutionContext.h"
 
 FAIExtStateTreeTaskGetActorOwnedTags::FAIExtStateTreeTaskGetActorOwnedTags()
 {

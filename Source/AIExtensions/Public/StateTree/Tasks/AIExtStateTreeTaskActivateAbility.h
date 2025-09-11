@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include <GameplayAbilitySpecHandle.h>
-#include <StateTreeTaskBase.h>
-#include <Templates/SubclassOf.h>
+#include "GameplayAbilitySpecHandle.h"
+#include "StateTreeTaskBase.h"
+#include "Templates/SubclassOf.h"
 
 #include "AIExtStateTreeTaskActivateAbility.generated.h"
 

@@ -1,7 +1,7 @@
 #include "BehaviorTree/AIExtBTTask_WaitBlackboardTimeWithDeviation.h"
 
-#include <BehaviorTree/Blackboard/BlackboardKeyType_Float.h>
-#include <BehaviorTree/BlackboardComponent.h>
+#include "BehaviorTree/Blackboard/BlackboardKeyType_Float.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 void UAIExtBTTask_WaitBlackboardTimeWithDeviation::InitializeFromAsset( UBehaviorTree & asset )
 {

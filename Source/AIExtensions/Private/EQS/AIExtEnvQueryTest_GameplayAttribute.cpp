@@ -1,7 +1,7 @@
 #include "EQS/AIExtEnvQueryTest_GameplayAttribute.h"
 
-#include <AbilitySystemBlueprintLibrary.h>
-#include <EnvironmentQuery/Items/EnvQueryItemType_ActorBase.h>
+#include "AbilitySystemBlueprintLibrary.h"
+#include "EnvironmentQuery/Items/EnvQueryItemType_ActorBase.h"
 
 UAIExtEnvQueryTest_GameplayAttribute::UAIExtEnvQueryTest_GameplayAttribute( const FObjectInitializer & object_initializer )
 {

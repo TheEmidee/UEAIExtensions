@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include <AISystem.h>
-#include <StateTreeTaskBase.h>
+#include "AISystem.h"
+#include "StateTreeTaskBase.h"
 
 #include "AIExtStateTreeTaskMoveTo.generated.h"
 

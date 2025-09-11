@@ -1,7 +1,7 @@
 #pragma once
 
-#include <CoreMinimal.h>
-#include <Tasks/AITask.h>
+#include "CoreMinimal.h"
+#include "Tasks/AITask.h"
 
 #include "AIExtAITask_TriggerGameplayBehavior.generated.h"
 

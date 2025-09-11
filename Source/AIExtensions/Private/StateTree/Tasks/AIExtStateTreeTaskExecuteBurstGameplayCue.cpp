@@ -1,7 +1,7 @@
 #include "StateTree/Tasks/AIExtStateTreeTaskExecuteBurstGameplayCue.h"
 
-#include <GameplayCueFunctionLibrary.h>
-#include <StateTreeExecutionContext.h>
+#include "GameplayCueFunctionLibrary.h"
+#include "StateTreeExecutionContext.h"
 
 FAIExtStateTreeTaskExecuteBurstGameplayCue::FAIExtStateTreeTaskExecuteBurstGameplayCue()
 {

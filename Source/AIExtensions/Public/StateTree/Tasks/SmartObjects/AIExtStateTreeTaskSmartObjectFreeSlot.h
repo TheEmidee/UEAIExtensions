@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include <SmartObjectRuntime.h>
-#include <SmartObjectTypes.h>
-#include <StateTreeTaskBase.h>
+#include "SmartObjectRuntime.h"
+#include "SmartObjectTypes.h"
+#include "StateTreeTaskBase.h"
 
 #include "AIExtStateTreeTaskSmartObjectFreeSlot.generated.h"
 

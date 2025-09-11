@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Abilities/GameplayAbility.h>
-#include <BehaviorTree/BTTaskNode.h>
-#include <CoreMinimal.h>
+#include "Abilities/GameplayAbility.h"
+#include "BehaviorTree/BTTaskNode.h"
+#include "CoreMinimal.h"
 
 #include "AIExtBTTask_TryActivateAbility.generated.h"
 

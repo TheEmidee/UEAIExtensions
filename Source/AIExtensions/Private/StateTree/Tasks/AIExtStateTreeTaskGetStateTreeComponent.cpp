@@ -1,7 +1,7 @@
 ﻿#include "StateTree/Tasks/AIExtStateTreeTaskGetStateTreeComponent.h"
 
-#include <Components/StateTreeComponent.h>
-#include <StateTreeExecutionContext.h>
+#include "Components/StateTreeComponent.h"
+#include "StateTreeExecutionContext.h"
 
 FAIExtStateTreeTaskGetStateTreeComponent::FAIExtStateTreeTaskGetStateTreeComponent()
 {

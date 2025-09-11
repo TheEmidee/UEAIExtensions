@@ -1,8 +1,8 @@
 #pragma once
 
-#include <CoreMinimal.h>
-#include <DataProviders/AIDataProvider_QueryParams.h>
-#include <ScalableFloat.h>
+#include "CoreMinimal.h"
+#include "DataProviders/AIDataProvider_QueryParams.h"
+#include "ScalableFloat.h"
 
 #include "AIExtDataProvider_ScalableFloat.generated.h"
 

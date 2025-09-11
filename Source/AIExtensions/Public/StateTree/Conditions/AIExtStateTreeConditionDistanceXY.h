@@ -2,7 +2,7 @@
 
 #include "AITypes.h"
 
-#include <StateTreeConditionBase.h>
+#include "StateTreeConditionBase.h"
 
 #include "AIExtStateTreeConditionDistanceXY.generated.h"
 

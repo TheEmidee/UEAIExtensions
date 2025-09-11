@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include <CoreMinimal.h>
-#include <Kismet/BlueprintFunctionLibrary.h>
-#include <UObject/ObjectMacros.h>
+#include "CoreMinimal.h"
+#include "Kismet/BlueprintFunctionLibrary.h"
+#include "UObject/ObjectMacros.h"
 
 #include "AIExtPerceptionFunctionLibrary.generated.h"
 

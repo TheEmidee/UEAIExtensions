@@ -1,6 +1,6 @@
 #include "BlueprintTasks/AIExtAsyncTaskWaitBTStopped.h"
 
-#include <BehaviorTree/BehaviorTreeComponent.h>
+#include "BehaviorTree/BehaviorTreeComponent.h"
 
 UAIExtAsyncTaskWaitBTStopped::UAIExtAsyncTaskWaitBTStopped()
 {

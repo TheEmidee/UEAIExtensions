@@ -1,7 +1,7 @@
 #include "EQS/AIExtEnvQueryGenerator_Cone.h"
 
-#include <EnvironmentQuery/Contexts/EnvQueryContext_Item.h>
-#include <EnvironmentQuery/Contexts/EnvQueryContext_Querier.h>
+#include "EnvironmentQuery/Contexts/EnvQueryContext_Item.h"
+#include "EnvironmentQuery/Contexts/EnvQueryContext_Querier.h"
 
 #define LOCTEXT_NAMESPACE "EnvQueryGenerator"
 

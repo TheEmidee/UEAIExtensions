@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include <SmartObjectTypes.h>
-#include <StateTreeConditionBase.h>
+#include "SmartObjectTypes.h"
+#include "StateTreeConditionBase.h"
 
 #include "AIExtStateTreeConditionIsSmartObjectSlotHandleValid.generated.h"
 

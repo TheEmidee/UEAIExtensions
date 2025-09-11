@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include <GameplayEffectTypes.h>
-#include <StateTreeTaskBase.h>
-#include <Templates/SubclassOf.h>
+#include "GameplayEffectTypes.h"
+#include "StateTreeTaskBase.h"
+#include "Templates/SubclassOf.h"
 
 #include "AIExtStateTreeTaskApplyGameplayEffect.generated.h"
 

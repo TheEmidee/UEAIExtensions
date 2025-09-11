@@ -1,9 +1,9 @@
 ﻿#include "StateTree/Tasks/AIExtStateTreeTaskRunEnvironmentQuery.h"
 
-#include <EnvironmentQuery/EnvQuery.h>
-#include <EnvironmentQuery/EnvQueryManager.h>
-#include <StateTreeExecutionContext.h>
-#include <VisualLogger/VisualLogger.h>
+#include "EnvironmentQuery/EnvQuery.h"
+#include "EnvironmentQuery/EnvQueryManager.h"
+#include "StateTreeExecutionContext.h"
+#include "VisualLogger/VisualLogger.h"
 
 void FAIExtStateTreeTaskRunEnvironmentQueryInstanceData::OnQueryFinished( const TSharedPtr< FEnvQueryResult > & env_query_result, UObject * context_owner, FStateTreeEventQueue & event_queue )
 {

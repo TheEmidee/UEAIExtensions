@@ -1,7 +1,7 @@
 ﻿#include "StateTree/Tasks/AIExtStateTreeTaskGetActorRotation.h"
 
-#include <GameFramework/Actor.h>
-#include <StateTreeExecutionContext.h>
+#include "GameFramework/Actor.h"
+#include "StateTreeExecutionContext.h"
 
 FAIExtStateTreeTaskGetActorRotation::FAIExtStateTreeTaskGetActorRotation()
 {

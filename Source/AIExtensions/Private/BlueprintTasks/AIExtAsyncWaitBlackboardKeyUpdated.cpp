@@ -1,6 +1,6 @@
 #include "BlueprintTasks/AIExtAsyncWaitBlackboardKeyUpdated.h"
 
-#include <BehaviorTree/BlackboardComponent.h>
+#include "BehaviorTree/BlackboardComponent.h"
 
 UAIExtAsyncWaitBlackboardKeyUpdated * UAIExtAsyncWaitBlackboardKeyUpdated::WaitBBKeyUpdated( UBlackboardComponent * blackboard_component, const FName key_name, const bool only_trigger_once /*= false*/ )
 {

@@ -1,9 +1,9 @@
 ﻿#pragma once
 
-#include <AISystem.h>
-#include <EnvironmentQuery/EnvQueryTypes.h>
-#include <StateTreeEvents.h>
-#include <StateTreeTaskBase.h>
+#include "AISystem.h"
+#include "EnvironmentQuery/EnvQueryTypes.h"
+#include "StateTreeEvents.h"
+#include "StateTreeTaskBase.h"
 
 #include "AIExtStateTreeTaskRunEnvironmentQuery.generated.h"
 

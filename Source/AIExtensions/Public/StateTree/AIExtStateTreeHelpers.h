@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <AITypes.h>
+#include "AITypes.h"
 
 namespace AIExtensions
 {

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <BehaviorTree/BTDecorator.h>
-#include <CoreMinimal.h>
+#include "BehaviorTree/BTDecorator.h"
+#include "CoreMinimal.h"
 
 #include "AIExtBTDecorator_RandomLoop.generated.h"
 
