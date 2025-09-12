@@ -16,7 +16,7 @@ struct FAIExtStateTreeTaskSetActorLocationInstanceData
     TObjectPtr< AActor > Actor = nullptr;
 
     UPROPERTY( EditAnywhere, Category = "Parameter" )
-    FVector Location;
+    FVector Location = FVector::ZeroVector;
 };
 
 /**
