@@ -113,7 +113,6 @@ void UAIExtAITask_TriggerGameplayBehavior::Activate()
 void UAIExtAITask_TriggerGameplayBehavior::Abort()
 {
     check( OwnerController );
-    check( OwnerController->GetPawn() );
 
     if ( !bBehaviorFinished )
     {
